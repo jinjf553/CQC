@@ -115,3 +115,15 @@ padding: 12px;
 .bds_more{background:#40a57d;}
 .bds_weixin{background:#7ad071;}
 .bdsharebuttonbox a:hover{background-color:#7fb4ab;color: #fff;border-bottom:0;}
+#SOHU_MAIN{
+width:initial !important;
+padding:0 50px !important;
+background-color:#FFF !important;
+padding-top:20px !important;
+}
+#SOHUCS #SOHU_MAIN .section-cbox-w .post-wrap-b {
+	border: 1px solid #ccd4d9 !important;
+}
+#SOHU_MAIN .section-cbox-w .post-default-b {
+	border: 1px solid #ccd4d9 !important;
+}

@@ -37,20 +37,9 @@ var _hmt = _hmt || [];
 <meta name="360-site-verification" content="bdc579accc68a98f1258ebcce2266afa" />
 <script type="text/javascript" name="baidu-tc-cerfication" data-appid="5411405" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo home_url() ?>/fav.png" />
+<script type="text/javascript" src="<?php echo get_bloginfo("template_url")?>/js/main.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	var imgs = new Array();
-	imgs[0] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111154.jpg';
-	imgs[1] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111447.jpg';
-	imgs[2] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112058.jpg';
-	imgs[3] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112112.jpg';
-	imgs[4] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112129.jpg';
-	imgs[5] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112155.jpg';
-	$('.ds-avatar img[src*="cdncache"]').each(function(){
-		var rand = Math.floor(Math.random()*imgs.length);
-		$(this).attr("src",imgs[rand]);
-	})
-});
+
 </script>
 </head>
 <body <?php body_class(); ?>>

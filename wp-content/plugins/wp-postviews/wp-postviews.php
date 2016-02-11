@@ -3,7 +3,7 @@
 Plugin Name: WP-PostViews
 Plugin URI: http://lesterchan.net/portfolio/programming/php/
 Description: Enables you to display how many times a post/page had been viewed.
-Version: 1.70
+Version: 1.71
 Author: Lester 'GaMerZ' Chan
 Author URI: http://lesterchan.net
 Text Domain: wp-postviews
@@ -258,6 +258,7 @@ if(!function_exists('get_least_viewed')) {
 					$post_title = snippet_text($post_title, $chars);
 				}
 				$post_excerpt = views_post_excerpt($post->post_excerpt, $post->post_content, $post->post_password, $chars);
+				$thumbnail = get_the_post_thumbnail($post->ID,'thumbnail',true);
 				$temp = stripslashes($views_options['most_viewed_template']);
 				$temp = str_replace("%VIEW_COUNT%", number_format_i18n($post_views), $temp);
 				$temp = str_replace("%VIEW_COUNT_ROUNDED%", postviews_round_number( $post_views ), $temp);
@@ -267,6 +268,7 @@ if(!function_exists('get_least_viewed')) {
 				$temp = str_replace("%POST_URL%", get_permalink($post), $temp);
 				$temp = str_replace("%POST_DATE%", get_the_time(get_option('date_format'), $post), $temp);
 				$temp = str_replace("%POST_TIME%", get_the_time(get_option('time_format'), $post), $temp);
+				$temp = str_replace("%POST_THUMBNAIL%", $thumbnail, $temp);
 				$output .= $temp;
 			}
 		} else {
@@ -307,6 +309,7 @@ if(!function_exists('get_most_viewed')) {
 				if($chars > 0) {
 					$post_title = snippet_text($post_title, $chars);
 				}
+				$thumbnail = get_the_post_thumbnail($post->ID,'thumbnail',true);
 				$post_excerpt = views_post_excerpt($post->post_excerpt, $post->post_content, $post->post_password, $chars);
 				$temp = stripslashes($views_options['most_viewed_template']);
 				$temp = str_replace("%VIEW_COUNT%", number_format_i18n( $post_views ), $temp);
@@ -317,6 +320,7 @@ if(!function_exists('get_most_viewed')) {
 				$temp = str_replace("%POST_URL%", get_permalink($post), $temp);
 				$temp = str_replace("%POST_DATE%", get_the_time(get_option('date_format'), $post), $temp);
 				$temp = str_replace("%POST_TIME%", get_the_time(get_option('time_format'), $post), $temp);
+				$temp = str_replace("%POST_THUMBNAIL%", $thumbnail, $temp);
 				$output .= $temp;
 			}
 		} else {
@@ -362,6 +366,7 @@ if(!function_exists('get_least_viewed_category')) {
 				if($chars > 0) {
 					$post_title = snippet_text($post_title, $chars);
 				}
+				$thumbnail = get_the_post_thumbnail($post->ID,'thumbnail',true);
 				$post_excerpt = views_post_excerpt($post->post_excerpt, $post->post_content, $post->post_password, $chars);
 				$temp = stripslashes($views_options['most_viewed_template']);
 				$temp = str_replace("%VIEW_COUNT%", number_format_i18n($post_views), $temp);
@@ -371,6 +376,7 @@ if(!function_exists('get_least_viewed_category')) {
 				$temp = str_replace("%POST_URL%", get_permalink($post), $temp);
 				$temp = str_replace("%POST_DATE%", get_the_time(get_option('date_format'), $post), $temp);
 				$temp = str_replace("%POST_TIME%", get_the_time(get_option('time_format'), $post), $temp);
+				$temp = str_replace("%POST_THUMBNAIL%", $thumbnail, $temp);
 				$output .= $temp;
 			}
 		} else {
@@ -416,6 +422,7 @@ if(!function_exists('get_most_viewed_category')) {
 				if($chars > 0) {
 					$post_title = snippet_text($post_title, $chars);
 				}
+				$thumbnail = get_the_post_thumbnail($post->ID,'thumbnail',true);
 				$post_excerpt = views_post_excerpt($post->post_excerpt, $post->post_content, $post->post_password, $chars);
 				$temp = stripslashes($views_options['most_viewed_template']);
 				$temp = str_replace("%VIEW_COUNT%", number_format_i18n($post_views), $temp);
@@ -425,6 +432,7 @@ if(!function_exists('get_most_viewed_category')) {
 				$temp = str_replace("%POST_URL%", get_permalink($post), $temp);
 				$temp = str_replace("%POST_DATE%", get_the_time(get_option('date_format'), $post), $temp);
 				$temp = str_replace("%POST_TIME%", get_the_time(get_option('time_format'), $post), $temp);
+				$temp = str_replace("%POST_THUMBNAIL%", $thumbnail, $temp);
 				$output .= $temp;
 			}
 		} else {
@@ -470,6 +478,7 @@ if(!function_exists('get_most_viewed_tag')) {
 				if($chars > 0) {
 					$post_title = snippet_text($post_title, $chars);
 				}
+				$thumbnail = get_the_post_thumbnail($post->ID,'thumbnail',true);
 				$post_excerpt = views_post_excerpt($post->post_excerpt, $post->post_content, $post->post_password, $chars);
 				$temp = stripslashes($views_options['most_viewed_template']);
 				$temp = str_replace("%VIEW_COUNT%", number_format_i18n($post_views), $temp);
@@ -479,6 +488,7 @@ if(!function_exists('get_most_viewed_tag')) {
 				$temp = str_replace("%POST_URL%", get_permalink($post), $temp);
 				$temp = str_replace("%POST_DATE%", get_the_time(get_option('date_format'), $post), $temp);
 				$temp = str_replace("%POST_TIME%", get_the_time(get_option('time_format'), $post), $temp);
+				$temp = str_replace("%POST_THUMBNAIL%", $thumbnail, $temp);
 				$output .= $temp;
 			}
 		} else {
@@ -524,6 +534,7 @@ if(!function_exists('get_least_viewed_tag')) {
 				if($chars > 0) {
 					$post_title = snippet_text($post_title, $chars);
 				}
+				$thumbnail = get_the_post_thumbnail($post->ID,'thumbnail',true);
 				$post_excerpt = views_post_excerpt($post->post_excerpt, $post->post_content, $post->post_password, $chars);
 				$temp = stripslashes($views_options['most_viewed_template']);
 				$temp = str_replace("%VIEW_COUNT%", number_format_i18n($post_views), $temp);
@@ -533,6 +544,7 @@ if(!function_exists('get_least_viewed_tag')) {
 				$temp = str_replace("%POST_URL%", get_permalink($post), $temp);
 				$temp = str_replace("%POST_DATE%", get_the_time(get_option('date_format'), $post), $temp);
 				$temp = str_replace("%POST_TIME%", get_the_time(get_option('time_format'), $post), $temp);
+				$temp = str_replace("%POST_THUMBNAIL%", $thumbnail, $temp);
 				$output .= $temp;
 			}
 		} else {
@@ -631,16 +643,6 @@ function add_views_fields($post_ID) {
 	global $wpdb;
 	if(!wp_is_post_revision($post_ID)) {
 		add_post_meta($post_ID, 'views', 0, true);
-	}
-}
-
-
-### Function: Delete Views Custom Fields
-add_action('delete_post', 'delete_views_fields');
-function delete_views_fields($post_ID) {
-	global $wpdb;
-	if(!wp_is_post_revision($post_ID)) {
-		delete_post_meta($post_ID, 'views');
 	}
 }
 
@@ -824,9 +826,9 @@ function postviews_round_number( $number, $min_value = 1000, $decimal = 1 ) {
 ### Class: WP-PostViews Widget
  class WP_Widget_PostViews extends WP_Widget {
 	// Constructor
-	function WP_Widget_PostViews() {
+	function __construct() {
 		$widget_ops = array('description' => __('WP-PostViews views statistics', 'wp-postviews'));
-		$this->WP_Widget('views', __('Views', 'wp-postviews'), $widget_ops);
+		parent::__construct('views', __('Views', 'wp-postviews'), $widget_ops);
 	}
 
 	// Display Widget

@@ -8,10 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <title>Python爬虫入门五之URLError异常处理 | 静觅</title>
 <script>
-window._deel = {name: '静觅',url: 'http://cuiqingcai.com/wp-content/themes/Yusi', ajaxpager: '', commenton: 1, roll: [0,0]}
+window._deel = {name: '静觅',url: 'http://cuiqingcai.com/wp-content/themes/Yusi', ajaxpager: 'on', commenton: 1, roll: [0,0]}
 </script>
 
-<!-- All in One SEO Pack 2.2.6.2 by Michael Torbert of Semper Fi Web Design[392,434] -->
+<!-- All in One SEO Pack 2.2.7.5 by Michael Torbert of Semper Fi Web Design[392,434] -->
 <meta name="description" itemprop="description" content="大家好，本节在这里主要说的是URLError还有HTTPError，以及对它们的一些处理。 1.URLError 首先解释下URLError可能产生的原因： 网络无连接，即本机无法上网 连接不到特定的服务器 服务器不存在 在代码中，我们需要用try-except语句来包围并捕获相应的异常。下面" />
 
 <meta name="keywords" itemprop="keywords" content="python,爬虫" />
@@ -40,12 +40,6 @@ img.emoji {
 <link rel='stylesheet' id='crayon-font-monaco-css'  href='http://cuiqingcai.com/wp-content/plugins/crayon-syntax-highlighter/fonts/monaco.css?ver=2.7.1' type='text/css' media='all' />
 <link rel='stylesheet' id='page-list-style-css'  href='http://cuiqingcai.com/wp-content/plugins/sitemap/css/page-list.css?ver=4.3' type='text/css' media='all' />
 <link rel='stylesheet' id='style-css'  href='http://cuiqingcai.com/wp-content/themes/Yusi/style.css?ver=33' type='text/css' media='all' />
-<script type="text/javascript">
-var duoshuoQuery = {"short_name":"cuiqingcai","sso":{"login":"http:\/\/cuiqingcai.com\/wp-login.php?action=duoshuo_login","logout":"http:\/\/cuiqingcai.com\/wp-login.php?action=logout&_wpnonce=d6fca5fc89"},"theme":"default","stylePatch":"wordpress\/\u9759\u89c5"};
-duoshuoQuery.sso.login += '&redirect_to=' + encodeURIComponent(window.location.href);
-duoshuoQuery.sso.logout += '&redirect_to=' + encodeURIComponent(window.location.href);
-</script>
-<script type="text/javascript" src="http://static.duoshuo.com/embed.js" charset="UTF-8" async="async"></script>
 <script type='text/javascript' src='//libs.baidu.com/jquery/1.8.3/jquery.min.js?ver=1.0'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
@@ -60,7 +54,7 @@ var CrayonSyntaxStrings = {"copy":"\u4f7f\u7528 %s \u590d\u5236\uff0c\u4f7f\u752
 <link rel='canonical' href='http://cuiqingcai.com/961.html' />
 <link rel='shortlink' href='http://cuiqingcai.com/?p=961' />
 <meta name="keywords" content="Python, 爬虫, Python">
-<meta name="description" content="大家好，本节在这里主要说的是URLError还有HTTPError，以及对它们的一些处理。 1.URLError 首先解释下URLError可能产生的原因：  	网络无连接，即本机无法上网 	连接不到特定的服务器 	服务器不存在  在代码中，我们需要用try-except语句来包围并捕获相应的异常。下面是一个例子，先感受下它的风骚 [crayon-5645bad71ec72003433218/] 我们利用了 urlopen方法访问了一个">
+<meta name="description" content="大家好，本节在这里主要说的是URLError还有HTTPError，以及对它们的一些处理。 1.URLError 首先解释下URLError可能产生的原因：  	网络无连接，即本机无法上网 	连接不到特定的服务器 	服务器不存在  在代码中，我们需要用try-except语句来包围并捕获相应的异常。下面是一个例子，先感受下它的风骚 [crayon-56bcab9e89f22735422855/] 我们利用了 urlopen方法访问了一个">
         <script type="text/javascript">
             jQuery(document).ready( function() {
                 jQuery('.video').fitVids();
@@ -79,20 +73,9 @@ var _hmt = _hmt || [];
 <meta name="360-site-verification" content="bdc579accc68a98f1258ebcce2266afa" />
 <script type="text/javascript" name="baidu-tc-cerfication" data-appid="5411405" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>
 <link rel="shortcut icon" type="image/x-icon" href="http://cuiqingcai.com/fav.png" />
+<script type="text/javascript" src="http://cuiqingcai.com/wp-content/themes/Yusi/js/main.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	var imgs = new Array();
-	imgs[0] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111154.jpg';
-	imgs[1] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111447.jpg';
-	imgs[2] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112058.jpg';
-	imgs[3] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112112.jpg';
-	imgs[4] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112129.jpg';
-	imgs[5] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112155.jpg';
-	$('.ds-avatar img[src*="cdncache"]').each(function(){
-		var rand = Math.floor(Math.random()*imgs.length);
-		$(this).attr("src",imgs[rand]);
-	})
-});
+
 </script>
 </head>
 <body class="single single-post postid-961 single-format-standard">
@@ -155,8 +138,8 @@ $(document).ready(function(){
 			<h1 class="article-title"><a href="http://cuiqingcai.com/961.html">Python爬虫入门五之URLError异常处理</a></h1>
 			<div class="meta">
 				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="http://cuiqingcai.com/category/technique/python"> Python</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="http://cuiqingcai.com/author/cqcre">崔庆才</a></span>
-				<time class="muted"><i class="fa fa-clock-o"></i> 9个月前 (02-13)</time>
-				<span class="muted"><i class="fa fa-eye"></i> 15263℃</span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 1年前 (2015-02-13)</time>
+				<span class="muted"><i class="fa fa-eye"></i> 23709℃</span>
 				<span class="muted"><i class="fa fa-comments-o"></i> <a href="http://cuiqingcai.com/961.html#comments">4评论</a></span>							</div>
 		</header>
 <div class="banner banner-post"><!-- tuici -->
@@ -183,7 +166,7 @@ var cpro_id = "u1959022";
 </ul>
 <p>在代码中，我们需要用try-except语句来包围并捕获相应的异常。下面是一个例子，先感受下它的风骚</p><!-- Crayon Syntax Highlighter v2.7.1 -->
 
-		<div id="crayon-5645bad71ec72003433218" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-56bcab9e89f22735422855" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
 			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
@@ -200,17 +183,17 @@ except urllib2.URLError, e:
 				<table class="crayon-table">
 					<tr class="crayon-row">
 				<td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bad71ec72003433218-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec72003433218-2">2</div><div class="crayon-num" data-line="crayon-5645bad71ec72003433218-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec72003433218-4">4</div><div class="crayon-num" data-line="crayon-5645bad71ec72003433218-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec72003433218-6">6</div><div class="crayon-num" data-line="crayon-5645bad71ec72003433218-7">7</div></div>
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-56bcab9e89f22735422855-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f22735422855-2">2</div><div class="crayon-num" data-line="crayon-56bcab9e89f22735422855-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f22735422855-4">4</div><div class="crayon-num" data-line="crayon-56bcab9e89f22735422855-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f22735422855-6">6</div><div class="crayon-num" data-line="crayon-56bcab9e89f22735422855-7">7</div></div>
 				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bad71ec72003433218-1"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec72003433218-2">&nbsp;</div><div class="crayon-line" id="crayon-5645bad71ec72003433218-3"><span class="crayon-v">requset</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-s">'http://www.xxxxx.com'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec72003433218-4"><span class="crayon-st">try</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bad71ec72003433218-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">requset</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec72003433218-6"><span class="crayon-e">except </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-v">URLError</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bad71ec72003433218-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-v">reason</span></div></div></td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-56bcab9e89f22735422855-1"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f22735422855-2">&nbsp;</div><div class="crayon-line" id="crayon-56bcab9e89f22735422855-3"><span class="crayon-v">requset</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-s">'http://www.xxxxx.com'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f22735422855-4"><span class="crayon-st">try</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-56bcab9e89f22735422855-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">requset</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f22735422855-6"><span class="crayon-e">except </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-v">URLError</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-56bcab9e89f22735422855-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-v">reason</span></div></div></td>
 					</tr>
 				</table>
 			</div>
 		</div>
-<!-- [Format Time: 0.0195 seconds] -->
+<!-- [Format Time: 0.0011 seconds] -->
 <p>我们利用了 urlopen方法访问了一个不存在的网址，运行结果如下：</p><!-- Crayon Syntax Highlighter v2.7.1 -->
 
-		<div id="crayon-5645bad71ec81137961693" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-56bcab9e89f2f032872823" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
 			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
@@ -221,9 +204,9 @@ except urllib2.URLError, e:
 				<table class="crayon-table">
 					<tr class="crayon-row">
 				<td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bad71ec81137961693-1">1</div></div>
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-56bcab9e89f2f032872823-1">1</div></div>
 				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bad71ec81137961693-1"><span class="crayon-sy">[</span><span class="crayon-i">Errno</span><span class="crayon-h"> </span><span class="crayon-cn">11004</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-e">getaddrinfo </span><span class="crayon-v">failed</span></div></div></td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-56bcab9e89f2f032872823-1"><span class="crayon-sy">[</span><span class="crayon-i">Errno</span><span class="crayon-h"> </span><span class="crayon-cn">11004</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-e">getaddrinfo </span><span class="crayon-v">failed</span></div></div></td>
 					</tr>
 				</table>
 			</div>
@@ -256,7 +239,7 @@ except urllib2.URLError, e:
 因为urllib2可以为你处理重定向，也就是3开头的代号可以被处理，并且100-299范围的号码指示成功，所以你只能看到400-599的错误号码。</p>
 <p>下面我们写一个例子来感受一下，捕获的异常是HTTPError，它会带有一个code属性，就是错误代号，另外我们又打印了reason属性，这是它的父类URLError的属性。</p><!-- Crayon Syntax Highlighter v2.7.1 -->
 
-		<div id="crayon-5645bad71ec89843106904" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-56bcab9e89f3b207825081" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
 			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
@@ -274,17 +257,17 @@ except urllib2.HTTPError, e:
 				<table class="crayon-table">
 					<tr class="crayon-row">
 				<td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bad71ec89843106904-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec89843106904-2">2</div><div class="crayon-num" data-line="crayon-5645bad71ec89843106904-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec89843106904-4">4</div><div class="crayon-num" data-line="crayon-5645bad71ec89843106904-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec89843106904-6">6</div><div class="crayon-num" data-line="crayon-5645bad71ec89843106904-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec89843106904-8">8</div></div>
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-56bcab9e89f3b207825081-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f3b207825081-2">2</div><div class="crayon-num" data-line="crayon-56bcab9e89f3b207825081-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f3b207825081-4">4</div><div class="crayon-num" data-line="crayon-56bcab9e89f3b207825081-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f3b207825081-6">6</div><div class="crayon-num" data-line="crayon-56bcab9e89f3b207825081-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f3b207825081-8">8</div></div>
 				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bad71ec89843106904-1"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec89843106904-2">&nbsp;</div><div class="crayon-line" id="crayon-5645bad71ec89843106904-3"><span class="crayon-v">req</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-s">'http://blog.csdn.net/cqcre'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec89843106904-4"><span class="crayon-st">try</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bad71ec89843106904-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">req</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec89843106904-6"><span class="crayon-e">except </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-v">HTTPError</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bad71ec89843106904-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-e">code</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec89843106904-8"><span class="crayon-e">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-v">reason</span></div></div></td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-56bcab9e89f3b207825081-1"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f3b207825081-2">&nbsp;</div><div class="crayon-line" id="crayon-56bcab9e89f3b207825081-3"><span class="crayon-v">req</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-s">'http://blog.csdn.net/cqcre'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f3b207825081-4"><span class="crayon-st">try</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-56bcab9e89f3b207825081-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">req</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f3b207825081-6"><span class="crayon-e">except </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-v">HTTPError</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-56bcab9e89f3b207825081-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-e">code</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f3b207825081-8"><span class="crayon-e">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-v">reason</span></div></div></td>
 					</tr>
 				</table>
 			</div>
 		</div>
-<!-- [Format Time: 0.0039 seconds] -->
+<!-- [Format Time: 0.0011 seconds] -->
 <p>运行结果如下</p><!-- Crayon Syntax Highlighter v2.7.1 -->
 
-		<div id="crayon-5645bad71ec92205519367" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-56bcab9e89f45694631161" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
 			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
@@ -296,9 +279,9 @@ Forbidden</textarea></div>
 				<table class="crayon-table">
 					<tr class="crayon-row">
 				<td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bad71ec92205519367-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec92205519367-2">2</div></div>
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-56bcab9e89f45694631161-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f45694631161-2">2</div></div>
 				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bad71ec92205519367-1"><span class="crayon-cn">403</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec92205519367-2"><span class="crayon-v">Forbidden</span></div></div></td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-56bcab9e89f45694631161-1"><span class="crayon-cn">403</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f45694631161-2"><span class="crayon-v">Forbidden</span></div></div></td>
 					</tr>
 				</table>
 			</div>
@@ -307,7 +290,7 @@ Forbidden</textarea></div>
 <p>错误代号是403，错误原因是Forbidden，说明服务器禁止访问。</p>
 <p>我们知道，HTTPError的父类是URLError，根据编程经验，父类的异常应当写到子类异常的后面，如果子类捕获不到，那么可以捕获父类的异常，所以上述的代码可以这么改写</p><!-- Crayon Syntax Highlighter v2.7.1 -->
 
-		<div id="crayon-5645bad71ec97737774713" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-56bcab9e89f4b121252040" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
 			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
@@ -328,9 +311,9 @@ else:
 				<table class="crayon-table">
 					<tr class="crayon-row">
 				<td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bad71ec97737774713-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec97737774713-2">2</div><div class="crayon-num" data-line="crayon-5645bad71ec97737774713-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec97737774713-4">4</div><div class="crayon-num" data-line="crayon-5645bad71ec97737774713-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec97737774713-6">6</div><div class="crayon-num" data-line="crayon-5645bad71ec97737774713-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec97737774713-8">8</div><div class="crayon-num" data-line="crayon-5645bad71ec97737774713-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec97737774713-10">10</div><div class="crayon-num" data-line="crayon-5645bad71ec97737774713-11">11</div></div>
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-56bcab9e89f4b121252040-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f4b121252040-2">2</div><div class="crayon-num" data-line="crayon-56bcab9e89f4b121252040-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f4b121252040-4">4</div><div class="crayon-num" data-line="crayon-56bcab9e89f4b121252040-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f4b121252040-6">6</div><div class="crayon-num" data-line="crayon-56bcab9e89f4b121252040-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f4b121252040-8">8</div><div class="crayon-num" data-line="crayon-56bcab9e89f4b121252040-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f4b121252040-10">10</div><div class="crayon-num" data-line="crayon-56bcab9e89f4b121252040-11">11</div></div>
 				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bad71ec97737774713-1"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec97737774713-2">&nbsp;</div><div class="crayon-line" id="crayon-5645bad71ec97737774713-3"><span class="crayon-v">req</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-s">'http://blog.csdn.net/cqcre'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec97737774713-4"><span class="crayon-st">try</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bad71ec97737774713-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">req</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec97737774713-6"><span class="crayon-e">except </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-v">HTTPError</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bad71ec97737774713-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-e">code</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec97737774713-8"><span class="crayon-e">except </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-v">URLError</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bad71ec97737774713-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-e">reason</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec97737774713-10"><span class="crayon-st">else</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bad71ec97737774713-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-s">"OK"</span></div></div></td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-56bcab9e89f4b121252040-1"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f4b121252040-2">&nbsp;</div><div class="crayon-line" id="crayon-56bcab9e89f4b121252040-3"><span class="crayon-v">req</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-s">'http://blog.csdn.net/cqcre'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f4b121252040-4"><span class="crayon-st">try</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-56bcab9e89f4b121252040-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">req</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f4b121252040-6"><span class="crayon-e">except </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-v">HTTPError</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-56bcab9e89f4b121252040-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-e">code</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f4b121252040-8"><span class="crayon-e">except </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-v">URLError</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-56bcab9e89f4b121252040-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-e">reason</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f4b121252040-10"><span class="crayon-st">else</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-56bcab9e89f4b121252040-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-s">"OK"</span></div></div></td>
 					</tr>
 				</table>
 			</div>
@@ -339,7 +322,7 @@ else:
 <p>如果捕获到了HTTPError，则输出code，不会再处理URLError异常。如果发生的不是HTTPError，则会去捕获URLError异常，输出错误原因。</p>
 <p>另外还可以加入 hasattr属性提前对属性进行判断，代码改写如下</p><!-- Crayon Syntax Highlighter v2.7.1 -->
 
-		<div id="crayon-5645bad71ec9d254830301" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-56bcab9e89f50876281877" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
 			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
@@ -361,9 +344,9 @@ else:
 				<table class="crayon-table">
 					<tr class="crayon-row">
 				<td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bad71ec9d254830301-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec9d254830301-2">2</div><div class="crayon-num" data-line="crayon-5645bad71ec9d254830301-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec9d254830301-4">4</div><div class="crayon-num" data-line="crayon-5645bad71ec9d254830301-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec9d254830301-6">6</div><div class="crayon-num" data-line="crayon-5645bad71ec9d254830301-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec9d254830301-8">8</div><div class="crayon-num" data-line="crayon-5645bad71ec9d254830301-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec9d254830301-10">10</div><div class="crayon-num" data-line="crayon-5645bad71ec9d254830301-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bad71ec9d254830301-12">12</div></div>
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-56bcab9e89f50876281877-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f50876281877-2">2</div><div class="crayon-num" data-line="crayon-56bcab9e89f50876281877-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f50876281877-4">4</div><div class="crayon-num" data-line="crayon-56bcab9e89f50876281877-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f50876281877-6">6</div><div class="crayon-num" data-line="crayon-56bcab9e89f50876281877-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f50876281877-8">8</div><div class="crayon-num" data-line="crayon-56bcab9e89f50876281877-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f50876281877-10">10</div><div class="crayon-num" data-line="crayon-56bcab9e89f50876281877-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-56bcab9e89f50876281877-12">12</div></div>
 				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bad71ec9d254830301-1"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec9d254830301-2">&nbsp;</div><div class="crayon-line" id="crayon-5645bad71ec9d254830301-3"><span class="crayon-v">req</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-s">'http://blog.csdn.net/cqcre'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec9d254830301-4"><span class="crayon-st">try</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bad71ec9d254830301-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">req</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec9d254830301-6"><span class="crayon-e">except </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-v">URLError</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bad71ec9d254830301-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-e">hasattr</span><span class="crayon-sy">(</span><span class="crayon-v">e</span><span class="crayon-sy">,</span><span class="crayon-s">"code"</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec9d254830301-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-e">code</span></div><div class="crayon-line" id="crayon-5645bad71ec9d254830301-9"><span class="crayon-e">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-e">hasattr</span><span class="crayon-sy">(</span><span class="crayon-v">e</span><span class="crayon-sy">,</span><span class="crayon-s">"reason"</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec9d254830301-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-e">reason</span></div><div class="crayon-line" id="crayon-5645bad71ec9d254830301-11"><span class="crayon-st">else</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bad71ec9d254830301-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-s">"OK"</span></div></div></td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-56bcab9e89f50876281877-1"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f50876281877-2">&nbsp;</div><div class="crayon-line" id="crayon-56bcab9e89f50876281877-3"><span class="crayon-v">req</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-s">'http://blog.csdn.net/cqcre'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f50876281877-4"><span class="crayon-st">try</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-56bcab9e89f50876281877-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">req</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f50876281877-6"><span class="crayon-e">except </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-v">URLError</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-56bcab9e89f50876281877-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-e">hasattr</span><span class="crayon-sy">(</span><span class="crayon-v">e</span><span class="crayon-sy">,</span><span class="crayon-s">"code"</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f50876281877-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-e">code</span></div><div class="crayon-line" id="crayon-56bcab9e89f50876281877-9"><span class="crayon-e">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-e">hasattr</span><span class="crayon-sy">(</span><span class="crayon-v">e</span><span class="crayon-sy">,</span><span class="crayon-s">"reason"</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f50876281877-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-e">reason</span></div><div class="crayon-line" id="crayon-56bcab9e89f50876281877-11"><span class="crayon-st">else</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-56bcab9e89f50876281877-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-s">"OK"</span></div></div></td>
 					</tr>
 				</table>
 			</div>
@@ -375,7 +358,7 @@ else:
 
       
 <div class="article-social">
-			<a href="javascript:;" data-action="ding" data-id="961" id="Addlike" class="action"><i class="fa fa-heart-o"></i>喜欢 (<span class="count">79</span>)</a><span class="or">or</span><span class="action action-share bdsharebuttonbox"><i class="fa fa-share-alt"></i>分享 (<span class="bds_count" data-cmd="count" title="累计分享0次">0</span>)<div class="action-popover"><div class="popover top in"><div class="arrow"></div><div class="popover-content"><a href="#" class="sinaweibo fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone fa fa-star" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="tencentweibo fa fa-tencent-weibo" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="qq fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_renren fa fa-renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_more fa fa-ellipsis-h" data-cmd="more"></a></div></div></div></span>	
+			<a href="javascript:;" data-action="ding" data-id="961" id="Addlike" class="action"><i class="fa fa-heart-o"></i>喜欢 (<span class="count">109</span>)</a><span class="or">or</span><span class="action action-share bdsharebuttonbox"><i class="fa fa-share-alt"></i>分享 (<span class="bds_count" data-cmd="count" title="累计分享0次">0</span>)<div class="action-popover"><div class="popover top in"><div class="arrow"></div><div class="popover-content"><a href="#" class="sinaweibo fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone fa fa-star" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="tencentweibo fa fa-tencent-weibo" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="qq fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_renren fa fa-renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_more fa fa-ellipsis-h" data-cmd="more"></a></div></div></div></span>	
 </div>
 	</article>	
 				<div style="background:#fff;padding-bottom:20px;font-size:14px;">
@@ -393,8 +376,13 @@ else:
 			<div class="related_posts"><ul class="related_img">
 
 		<li class="related_box"  >
+		<a href="http://cuiqingcai.com/2443.html" title="Python爬虫进阶二之PySpider框架安装配置" target="_blank">
+<img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2016/02/background.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="Python爬虫进阶二之PySpider框架安装配置" />	<br><span class="r_title">Python爬虫进阶二之PySpider框架安装配置</span></a>
+		</li>
+	
+		<li class="related_box"  >
 		<a href="http://cuiqingcai.com/2083.html" title="自己动手实现山东大学QLSC_STU无线网络掉线后自动重连" target="_blank">
-<img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/09/wallpaper_5265780.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="自己动手实现山东大学QLSC_STU无线网络掉线后自动重连" />	<br><span class="r_title">自己动手实现山东大学QLSC_STU无线网络掉线后自动重连</span></a>
+<img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/09/wallpaper_5265780-e1454442805684.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="自己动手实现山东大学QLSC_STU无线网络掉线后自动重连" />	<br><span class="r_title">自己动手实现山东大学QLSC_STU无线网络掉线后自动重连</span></a>
 		</li>
 	
 		<li class="related_box"  >
@@ -406,34 +394,32 @@ else:
 		<a href="http://cuiqingcai.com/1707.html" title="Python中ValueError: invalid literal for int() with base 10 的实用解决办法" target="_blank">
 <img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5263464.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="Python中ValueError: invalid literal for int() with base 10 的实用解决办法" />	<br><span class="r_title">Python中ValueError: invalid literal for int() with base 10 的实用解决办法</span></a>
 		</li>
-	
-		<li class="related_box"  >
-		<a href="http://cuiqingcai.com/1319.html" title="Python爬虫入门八之Beautiful Soup的用法" target="_blank">
-<img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/03/wallpaper_52546561.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="Python爬虫入门八之Beautiful Soup的用法" />	<br><span class="r_title">Python爬虫入门八之Beautiful Soup的用法</span></a>
-		</li>
 	</ul>
 
 <div class="relates">
 <ul>
-<li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/2083.html">自己动手实现山东大学QLSC_STU无线网络掉线后自动重连</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1972.html">Python爬虫实战六之抓取爱问知识人问题并保存至数据库</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1707.html">Python中ValueError: invalid literal for int() with base 10 的实用解决办法</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1319.html">Python爬虫入门八之Beautiful Soup的用法</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1076.html">Python爬虫实战五之模拟登录淘宝并获取所有订单</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1052.html">Python爬虫学习系列教程</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1001.html">Python爬虫实战四之抓取淘宝MM照片</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/997.html">Python爬虫实战三之计算大学本学期绩点</a></li>
+<li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/2443.html">Python爬虫进阶二之PySpider框架安装配置</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/2083.html">自己动手实现山东大学QLSC_STU无线网络掉线后自动重连</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1972.html">Python爬虫实战六之抓取爱问知识人问题并保存至数据库</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1707.html">Python中ValueError: invalid literal for int() with base 10 的实用解决办法</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1319.html">Python爬虫入门八之Beautiful Soup的用法</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1076.html">Python爬虫实战五之模拟登录淘宝并获取所有订单</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1052.html">Python爬虫学习系列教程</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1001.html">Python爬虫实战四之抓取淘宝MM照片</a></li>
 </ul></div></div>		</div>
 						<a name="comments"></a>
-
-<div class="ds-thread" data-thread-key="961" data-author-key="1" data-title="Python爬虫入门五之URLError异常处理" data-url="http://cuiqingcai.com/961.html"></div>
-
-<script type="text/javascript">
-	if (typeof DUOSHUO !== 'undefined')
-		DUOSHUO.EmbedThread('.ds-thread');
-</script>
-	<div id="ds-ssr">
-
-		
-            <ol id="commentlist">
+<div id="SOHUCS" sid="961"></div> 
+<script type="text/javascript"> 
+(function(){ 
+    var appid = 'cyse2vKeA'; 
+    var conf = 'prod_e440e40ef998fc11db594040d810aefb'; 
+    var width = window.innerWidth || document.documentElement.clientWidth; 
+    if (width < 960) { 
+        window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+    } else { 
+        var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); 
+    }})(); 
+</script>            
+<div id="ds-ssr" style="display:none">
+		            <ol id="commentlist">
                 		<li class="comment even thread-even depth-1" id="li-comment-863">
 			<article id="comment-863" class="comment">
 				<footer class="comment-meta">
 					<cite class="comment-author vcard">
-						<span class="fn"><a href='http://weibo.com/3196033700' rel='external nofollow' class='url'>苏希慈大官人</a></span> on <a rel="nofollow" href="http://cuiqingcai.com/961.html/comment-page-1#comment-863"><time pubdate datetime="2015-09-27T21:45:28+00:00">2015年9月27日 at 下午9:45</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+						<span class="fn"><a href='http://weibo.com/3196033700' rel='external nofollow' class='url'>苏希慈大官人</a></span> on <a rel="nofollow" href="http://cuiqingcai.com/961.html/comment-page-1#comment-863"><time pubdate datetime="2015-09-27T21:45:28+00:00">2015年9月27日 at 下午9:45</time></a> <span class="says">said:</span>					</cite>
 				</footer>
 	
 				<div class="comment-content"><p>刚刚学习python，之前虽然知道，但是也没有用过try这种获取异常的方法。<br />
@@ -449,31 +435,31 @@ except urllib2.URLError, e:<br />
 result = urllib2.urlopen(request,timeout = 10)#get request</p>
 </div>
 				
-			</article><!-- #comment-## -->
+			</article>
 		</li><!-- #comment-## -->
 		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-233">
 			<article id="comment-233" class="comment">
 				<footer class="comment-meta">
 					<cite class="comment-author vcard">
-						<span class="fn">tanek</span> on <a rel="nofollow" href="http://cuiqingcai.com/961.html/comment-page-1#comment-233"><time pubdate datetime="2015-04-06T00:21:49+00:00">2015年4月6日 at 上午12:21</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+						<span class="fn">tanek</span> on <a rel="nofollow" href="http://cuiqingcai.com/961.html/comment-page-1#comment-233"><time pubdate datetime="2015-04-06T00:21:49+00:00">2015年4月6日 at 上午12:21</time></a> <span class="says">said:</span>					</cite>
 				</footer>
 	
 				<div class="comment-content"><p><a href="http://www.xxxxx.com/" rel="nofollow">http://www.xxxxx.com/</a> 还真的存在呢</p>
 </div>
 				
-			</article><!-- #comment-## -->
+			</article>
 		<ul class="children">
 		<li class="comment byuser comment-author-cqcre bypostauthor even depth-2" id="li-comment-234">
 			<article id="comment-234" class="comment">
 				<footer class="comment-meta">
 					<cite class="comment-author vcard">
-						<span class="fn"><a href='http://cuiqingcai.com/' rel='external nofollow' class='url'>崔庆才</a></span> on <a rel="nofollow" href="http://cuiqingcai.com/961.html/comment-page-1#comment-234"><time pubdate datetime="2015-04-06T00:29:03+00:00">2015年4月6日 at 上午12:29</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+						<span class="fn"><a href='http://cuiqingcai.com/' rel='external nofollow' class='url'>崔庆才</a></span> on <a rel="nofollow" href="http://cuiqingcai.com/961.html/comment-page-1#comment-234"><time pubdate datetime="2015-04-06T00:29:03+00:00">2015年4月6日 at 上午12:29</time></a> <span class="says">said:</span>					</cite>
 				</footer>
 	
 				<div class="comment-content"><p>哈哈哈被你发现了</p>
 </div>
 				
-			</article><!-- #comment-## -->
+			</article>
 		</li><!-- #comment-## -->
 </ul><!-- .children -->
 </li><!-- #comment-## -->
@@ -481,18 +467,18 @@ result = urllib2.urlopen(request,timeout = 10)#get request</p>
 			<article id="comment-66" class="comment">
 				<footer class="comment-meta">
 					<cite class="comment-author vcard">
-						<span class="fn"><a href='http://cuiqingcai.com/' rel='external nofollow' class='url'>崔庆才</a></span> on <a rel="nofollow" href="http://cuiqingcai.com/961.html/comment-page-1#comment-66"><time pubdate datetime="2015-02-15T00:46:03+00:00">2015年2月15日 at 上午12:46</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+						<span class="fn"><a href='http://cuiqingcai.com/' rel='external nofollow' class='url'>崔庆才</a></span> on <a rel="nofollow" href="http://cuiqingcai.com/961.html/comment-page-1#comment-66"><time pubdate datetime="2015-02-15T00:46:03+00:00">2015年2月15日 at 上午12:46</time></a> <span class="says">said:</span>					</cite>
 				</footer>
 	
 				<div class="comment-content"><p>爬虫</p>
 </div>
 				
-			</article><!-- #comment-## -->
+			</article>
 		</li><!-- #comment-## -->
             </ol>
 
-		            
-    </div>			</div>
+		    </div>
+			</div>
 </div>
 <aside class="sidebar">	
 <div class="widget widget_text"><div class="textwidget"><div class="social">
@@ -502,6 +488,9 @@ result = urllib2.urlopen(request,timeout = 10)#get request</p>
 </div></div></div>
 
 <div class="widget widget_archive"><div class="title"><h2>文章归档</h2></div>		<ul>
+	<li><a href='http://cuiqingcai.com/date/2016/02'>2016年二月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2016/01'>2016年一月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/12'>2015年十二月</a></li>
 	<li><a href='http://cuiqingcai.com/date/2015/11'>2015年十一月</a></li>
 	<li><a href='http://cuiqingcai.com/date/2015/10'>2015年十月</a></li>
 	<li><a href='http://cuiqingcai.com/date/2015/09'>2015年九月</a></li>
@@ -518,7 +507,16 @@ result = urllib2.urlopen(request,timeout = 10)#get request</p>
 	<li><a href='http://cuiqingcai.com/date/2014/10'>2014年十月</a></li>
 	<li><a href='http://cuiqingcai.com/date/2014/09'>2014年九月</a></li>
 		</ul>
-</div><div class="widget widget_text"><div class="title"><h2>原创游戏</h2></div>			<div class="textwidget"><div class="taobaotextad">
+</div><div class="widget widget_links"><div class="title"><h2>热门专题</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="http://cuiqingcai.com/1052.html" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254665-e1424499272248.jpg"  alt="Python爬虫"  /> Python爬虫</a></li>
+<li><a href="http://cuiqingcai.com/1479.html"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2016/02/23.jpg"  alt="PHP高级特性"  /> PHP高级特性</a></li>
+<li><a href="http://cuiqingcai.com/2469.html" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2016/02/17.jpg"  alt="JavaScript"  /> JavaScript</a></li>
+<li><a href="http://cuiqingcai.com/2467.html" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2016/02/15.jpg"  alt="OpenGL绘图"  /> OpenGL绘图</a></li>
+
+	</ul>
+</div>
+<div class="widget widget_text"><div class="title"><h2>原创游戏</h2></div>			<div class="textwidget"><div class="taobaotextad">
 <p style="
     margin-left: 20px;
     color: #00a67c;
@@ -528,16 +526,16 @@ result = urllib2.urlopen(request,timeout = 10)#get request</p>
 <a href="http://res.cuiqingcai.com/ballescape/">
 <input type="button" value="了解更多" style="width: 310px; margin: 10px auto 0px; background-color: rgb(245, 138, 135); color: rgb(255, 255, 255); height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" onmouseover="this.style.backgroundColor='rgb(252, 125, 121)'" onmouseout="this.style.backgroundColor='#F58A87'"></a>
 </p></div></div>
-		</div><div class="widget d_postlist"><div class="title"><h2>猜你喜欢</h2></div><ul><li><a href="http://cuiqingcai.com/990.html" title="Python爬虫实战一之爬取糗事百科段子" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5228661.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战一之爬取糗事百科段子" /></span><span class="text">Python爬虫实战一之爬取糗事百科段子</span><span class="muted">2015-02-17</span><span class="muted"><span class="ds-thread-count" data-thread-key="990" data-replace="1">123评论</span></span></a></li>
-<li><a href="http://cuiqingcai.com/1001.html" title="Python爬虫实战四之抓取淘宝MM照片" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5270641.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战四之抓取淘宝MM照片" /></span><span class="text">Python爬虫实战四之抓取淘宝MM照片</span><span class="muted">2015-02-20</span><span class="muted"><span class="ds-thread-count" data-thread-key="1001" data-replace="1">81评论</span></span></a></li>
-<li><a href="http://cuiqingcai.com/1076.html" title="Python爬虫实战五之模拟登录淘宝并获取所有订单" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5226152.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战五之模拟登录淘宝并获取所有订单" /></span><span class="text">Python爬虫实战五之模拟登录淘宝并获取所有订单</span><span class="muted">2015-02-24</span><span class="muted"><span class="ds-thread-count" data-thread-key="1076" data-replace="1">79评论</span></span></a></li>
-<li><a href="http://cuiqingcai.com/993.html" title="Python爬虫实战二之爬取百度贴吧帖子" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5265936.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战二之爬取百度贴吧帖子" /></span><span class="text">Python爬虫实战二之爬取百度贴吧帖子</span><span class="muted">2015-02-17</span><span class="muted"><span class="ds-thread-count" data-thread-key="993" data-replace="1">51评论</span></span></a></li>
-<li><a href="http://cuiqingcai.com/1052.html" title="Python爬虫学习系列教程" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254665-e1424499272248.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫学习系列教程" /></span><span class="text">Python爬虫学习系列教程</span><span class="muted">2015-02-21</span><span class="muted"><span class="ds-thread-count" data-thread-key="1052" data-replace="1">44评论</span></span></a></li>
-<li><a href="http://cuiqingcai.com/968.html" title="Python爬虫入门六之Cookie的使用" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5258536-1.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门六之Cookie的使用" /></span><span class="text">Python爬虫入门六之Cookie的使用</span><span class="muted">2015-02-15</span><span class="muted"><span class="ds-thread-count" data-thread-key="968" data-replace="1">37评论</span></span></a></li>
-<li><a href="http://cuiqingcai.com/997.html" title="Python爬虫实战三之计算大学本学期绩点" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5265978.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战三之计算大学本学期绩点" /></span><span class="text">Python爬虫实战三之计算大学本学期绩点</span><span class="muted">2015-02-20</span><span class="muted"><span class="ds-thread-count" data-thread-key="997" data-replace="1">32评论</span></span></a></li>
-<li><a href="http://cuiqingcai.com/912.html" title="Python爬虫进阶一之爬虫框架Scrapy安装配置" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/d52a2834349b033b20721ee016ce36d3d539bd16.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫进阶一之爬虫框架Scrapy安装配置" /></span><span class="text">Python爬虫进阶一之爬虫框架Scrapy安装配置</span><span class="muted">2015-02-17</span><span class="muted"><span class="ds-thread-count" data-thread-key="912" data-replace="1">29评论</span></span></a></li>
-<li><a href="http://cuiqingcai.com/1319.html" title="Python爬虫入门八之Beautiful Soup的用法" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/03/wallpaper_52546561.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门八之Beautiful Soup的用法" /></span><span class="text">Python爬虫入门八之Beautiful Soup的用法</span><span class="muted">2015-03-11</span><span class="muted"><span class="ds-thread-count" data-thread-key="1319" data-replace="1">26评论</span></span></a></li>
-<li><a href="http://cuiqingcai.com/977.html" title="Python爬虫入门七之正则表达式" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5270713.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门七之正则表达式" /></span><span class="text">Python爬虫入门七之正则表达式</span><span class="muted">2015-02-15</span><span class="muted"><span class="ds-thread-count" data-thread-key="977" data-replace="1">21评论</span></span></a></li>
+		</div><div class="widget d_postlist"><div class="title"><h2>猜你喜欢</h2></div><ul><li><a href="http://cuiqingcai.com/990.html" title="Python爬虫实战一之爬取糗事百科段子" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5228661.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战一之爬取糗事百科段子" /></span><span class="text">Python爬虫实战一之爬取糗事百科段子</span><span class="muted">2015-02-17</span><span class="muted">177评论</span></a></li>
+<li><a href="http://cuiqingcai.com/1076.html" title="Python爬虫实战五之模拟登录淘宝并获取所有订单" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5226152.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战五之模拟登录淘宝并获取所有订单" /></span><span class="text">Python爬虫实战五之模拟登录淘宝并获取所有订单</span><span class="muted">2015-02-24</span><span class="muted">99评论</span></a></li>
+<li><a href="http://cuiqingcai.com/1001.html" title="Python爬虫实战四之抓取淘宝MM照片" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5270641.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战四之抓取淘宝MM照片" /></span><span class="text">Python爬虫实战四之抓取淘宝MM照片</span><span class="muted">2015-02-20</span><span class="muted">98评论</span></a></li>
+<li><a href="http://cuiqingcai.com/993.html" title="Python爬虫实战二之爬取百度贴吧帖子" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5265936.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战二之爬取百度贴吧帖子" /></span><span class="text">Python爬虫实战二之爬取百度贴吧帖子</span><span class="muted">2015-02-17</span><span class="muted">65评论</span></a></li>
+<li><a href="http://cuiqingcai.com/1052.html" title="Python爬虫学习系列教程" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254665-e1424499272248.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫学习系列教程" /></span><span class="text">Python爬虫学习系列教程</span><span class="muted">2015-02-21</span><span class="muted">57评论</span></a></li>
+<li><a href="http://cuiqingcai.com/968.html" title="Python爬虫入门六之Cookie的使用" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5258536-1.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门六之Cookie的使用" /></span><span class="text">Python爬虫入门六之Cookie的使用</span><span class="muted">2015-02-15</span><span class="muted">48评论</span></a></li>
+<li><a href="http://cuiqingcai.com/997.html" title="Python爬虫实战三之计算大学本学期绩点" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5265978.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战三之计算大学本学期绩点" /></span><span class="text">Python爬虫实战三之计算大学本学期绩点</span><span class="muted">2015-02-20</span><span class="muted">39评论</span></a></li>
+<li><a href="http://cuiqingcai.com/1319.html" title="Python爬虫入门八之Beautiful Soup的用法" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/03/wallpaper_52546561.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门八之Beautiful Soup的用法" /></span><span class="text">Python爬虫入门八之Beautiful Soup的用法</span><span class="muted">2015-03-11</span><span class="muted">37评论</span></a></li>
+<li><a href="http://cuiqingcai.com/947.html" title="Python爬虫入门三之Urllib库的基本使用" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5226849-1.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门三之Urllib库的基本使用" /></span><span class="text">Python爬虫入门三之Urllib库的基本使用</span><span class="muted">2015-02-13</span><span class="muted">27评论</span></a></li>
+<li><a href="http://cuiqingcai.com/977.html" title="Python爬虫入门七之正则表达式" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5270713.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门七之正则表达式" /></span><span class="text">Python爬虫入门七之正则表达式</span><span class="muted">2015-02-15</span><span class="muted">23评论</span></a></li>
 </ul></div><div class="widget widget_text"><div class="title"><h2>我要投稿</h2></div>			<div class="textwidget"><div class="taobaotextad">
 <p style="
     margin-left: 20px;
@@ -548,31 +546,37 @@ result = urllib2.urlopen(request,timeout = 10)#get request</p>
 <a href="http://cuiqingcai.com/wp-login.php?action=register">
 <input type="button" value="点我投稿" style="width: 310px; margin: 10px auto 0px; background-color: rgb(245, 138, 135); color: rgb(255, 255, 255); height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" onmouseover="this.style.backgroundColor='rgb(252, 125, 121)'" onmouseout="this.style.backgroundColor='#F58A87'"></a>
 </p></div></div>
-		</div><div class="widget d_tag"><div class="title"><h2>标签云</h2></div><div class="d_tags"><a title="26个话题" href="http://cuiqingcai.com/tag/php">PHP (26)</a><a title="20个话题" href="http://cuiqingcai.com/tag/python">Python (20)</a><a title="16个话题" href="http://cuiqingcai.com/tag/%e7%88%ac%e8%99%ab">爬虫 (16)</a><a title="14个话题" href="http://cuiqingcai.com/tag/js">JS (14)</a><a title="10个话题" href="http://cuiqingcai.com/tag/opengl">OpenGL (10)</a><a title="9个话题" href="http://cuiqingcai.com/tag/html">HTML (9)</a><a title="7个话题" href="http://cuiqingcai.com/tag/linux">Linux (7)</a><a title="6个话题" href="http://cuiqingcai.com/tag/jquery">jQuery (6)</a><a title="6个话题" href="http://cuiqingcai.com/tag/winpcap">Winpcap (6)</a><a title="5个话题" href="http://cuiqingcai.com/tag/wordpress">WordPress (5)</a><a title="4个话题" href="http://cuiqingcai.com/tag/git">Git (4)</a><a title="4个话题" href="http://cuiqingcai.com/tag/security">Security (4)</a><a title="3个话题" href="http://cuiqingcai.com/tag/java">Java (3)</a><a title="3个话题" href="http://cuiqingcai.com/tag/mysql">Mysql (3)</a><a title="3个话题" href="http://cuiqingcai.com/tag/net">Net (3)</a><a title="2个话题" href="http://cuiqingcai.com/tag/cocos2d-x">Cocos2d-x (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/jsp">JSP (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/matlab">Matlab (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/bootstrap">Bootstrap (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/photoshop">Photoshop (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/css">CSS (2)</a><a title="1个话题" href="http://cuiqingcai.com/tag/json">Json (1)</a><a title="1个话题" href="http://cuiqingcai.com/tag/redis">Redis (1)</a><a title="1个话题" href="http://cuiqingcai.com/tag/less">LESS (1)</a><a title="1个话题" href="http://cuiqingcai.com/tag/nginx">Nginx (1)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情链接</h2></div>
+		</div><div class="widget d_tag"><div class="title"><h2>标签云</h2></div><div class="d_tags"><a title="27个话题" href="http://cuiqingcai.com/tag/php">PHP (27)</a><a title="20个话题" href="http://cuiqingcai.com/tag/python">Python (20)</a><a title="16个话题" href="http://cuiqingcai.com/tag/%e7%88%ac%e8%99%ab">爬虫 (16)</a><a title="16个话题" href="http://cuiqingcai.com/tag/js">JS (16)</a><a title="11个话题" href="http://cuiqingcai.com/tag/opengl">OpenGL (11)</a><a title="10个话题" href="http://cuiqingcai.com/tag/html">HTML (10)</a><a title="8个话题" href="http://cuiqingcai.com/tag/jquery">jQuery (8)</a><a title="7个话题" href="http://cuiqingcai.com/tag/linux">Linux (7)</a><a title="7个话题" href="http://cuiqingcai.com/tag/winpcap">Winpcap (7)</a><a title="6个话题" href="http://cuiqingcai.com/tag/wordpress">WordPress (6)</a><a title="6个话题" href="http://cuiqingcai.com/tag/security">Security (6)</a><a title="4个话题" href="http://cuiqingcai.com/tag/git">Git (4)</a><a title="4个话题" href="http://cuiqingcai.com/tag/net">Net (4)</a><a title="3个话题" href="http://cuiqingcai.com/tag/java">Java (3)</a><a title="3个话题" href="http://cuiqingcai.com/tag/mysql">Mysql (3)</a><a title="2个话题" href="http://cuiqingcai.com/tag/cocos2d-x">Cocos2d-x (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/jsp">JSP (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/matlab">Matlab (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/bootstrap">Bootstrap (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/photoshop">Photoshop (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/css">CSS (2)</a><a title="1个话题" href="http://cuiqingcai.com/tag/json">Json (1)</a><a title="1个话题" href="http://cuiqingcai.com/tag/redis">Redis (1)</a><a title="1个话题" href="http://cuiqingcai.com/tag/less">LESS (1)</a><a title="1个话题" href="http://cuiqingcai.com/tag/nginx">Nginx (1)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情链接</h2></div>
 	<ul class='xoxo blogroll'>
-<li><a href="http://www.anotherhome.net" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/03/wallpaper_5264963.jpg"  alt="Anotherhome "  /> Anotherhome</a></li>
-<li><a href="http://zhouchenwen.com" rel="acquaintance" target="_blank"><img src="http://zhouchenwen-wordpress.stor.sinaapp.com/uploads/2015/03/beatiful.jpg"  alt="ColdCoder "  /> ColdCoder</a></li>
-<li><a href="http://www.findspace.name" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254666.jpg"  alt="Findspace "  /> Findspace</a></li>
-<li><a href="http://blog.hickwu.com/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5270857.jpg"  alt="Hick "  /> Hick</a></li>
-<li><a href="http://www.nopcn.com" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/07/wallpaper_5263470.jpg"  alt="nopcommerce "  /> nopcommerce</a></li>
-<li><a href="http://www.atrail.cn/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254665-e1424499272248.jpg"  alt="从前以后 "  /> 从前以后</a></li>
-<li><a href="http://www.superqq.com/"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/wallpaper_5265810.jpg"  alt="刚刚在线 "  /> 刚刚在线</a></li>
-<li><a href="http://www.lvtao.net" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5228675.jpg"  alt="吕滔博客 "  /> 吕滔博客</a></li>
-<li><a href="http://www.fddcn.cn" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5228669.jpg"  alt="奋斗的承诺 "  /> 奋斗的承诺</a></li>
-<li><a href="http://www.zuilizhi.net/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/07/wallpaper_5247812.jpg"  alt="最励志网 "  /> 最励志网</a></li>
-<li><a href="http://www.lishengcn.cn/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5266007.jpg"  alt="李胜的脚步 "  /> 李胜的脚步</a></li>
-<li><a href="http://liaoyuming.cn" rel="acquaintance" target="_blank"><img src="http://liaoyuming.cn/wp-content/uploads/2015/03/3-750x300.jpg"  alt="永远站 "  /> 永远站</a></li>
-<li><a href="http://www.hubwiz.com" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/08/wallpaper_5269088.jpg"  alt="汇智网 "  /> 汇智网</a></li>
-<li><a href="http://www.zoeys.cn/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/10/wallpaper_5234204-e1446021079981.jpg"  alt="糊糊 "  /> 糊糊</a></li>
-<li><a href="http://www.leyle.com/" target="_blank"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5259137-1.jpg&amp;h=123&amp;w=200&amp;q=90&amp;zc=1&amp;ct=1"  alt="遗落岛 "  /> 遗落岛</a></li>
+<li><a href="http://www.anotherhome.net" target="_blank">Anotherhome</a></li>
+<li><a href="http://zhouchenwen.com" rel="acquaintance" target="_blank">ColdCoder</a></li>
+<li><a href="http://www.findspace.name" target="_blank">Findspace</a></li>
+<li><a href="http://blog.hickwu.com/" target="_blank">Hick</a></li>
+<li><a href="http://www.nopcn.com" target="_blank">nopcommerce</a></li>
+<li><a href="http://wonderlee.me">Wonder’s Land</a></li>
+<li><a href="http://www.atrail.cn/" target="_blank">从前以后</a></li>
+<li><a href="http://www.superqq.com/">刚刚在线</a></li>
+<li><a href="http://www.lvtao.net" target="_blank">吕滔博客</a></li>
+<li><a href="http://www.fddcn.cn" target="_blank">奋斗的承诺</a></li>
+<li><a href="http://www.zuilizhi.net/" target="_blank">最励志网</a></li>
+<li><a href="http://www.lishengcn.cn/" target="_blank">李胜的脚步</a></li>
+<li><a href="http://liaoyuming.cn" rel="acquaintance" target="_blank">永远站</a></li>
+<li><a href="http://www.hubwiz.com" target="_blank">汇智网</a></li>
+<li><a href="http://www.zoeys.cn/" target="_blank">糊糊</a></li>
+<li><a href="http://www.leyle.com/" target="_blank">遗落岛</a></li>
 
 	</ul>
 </div>
-<div class="widget widget_text"><div class="title"><h2>本站热门</h2></div>			<div class="textwidget"><div class = "taobaotextad" style="margin-top:-10px;"><script>document.write(unescape('%3Cdiv id="hm_t_59089"%3E%3C/div%3E%3Cscript charset="utf-8" src="http://crs.baidu.com/t.js?siteId=3ef185224776ec2561c9f7066ead4f24&planId=59089&async=0&referer=') + encodeURIComponent(document.referrer) + '&title=' + encodeURIComponent(document.title) + '&rnd=' + (+new Date) + unescape('"%3E%3C/script%3E'));</script>
-</div></div>
-		</div><div class="widget widget_text"><div class="title"><h2>休闲一下</h2></div>			<div class="textwidget"><div  style = "text-align: center" width="100%"><a href = "http://res.cuiqingcai.com/2048">
-<img src = "http://cuiqingcai.com/wp-content/uploads/2014/11/2048.jpg" style="margin:10px 0 10px 0" alt = "2048游戏"/>
-</a></div></div>
+<div class="widget widget_text"><div class="title"><h2>休闲一下</h2></div>			<div class="textwidget"><div class="taobaotextad">
+<p style="
+    margin-left: 20px;
+    color: #00a67c;
+">累了吧？玩个游戏休息一下吧 </p><p style="
+    margin-left: 10px;
+">
+<a href="http://res.cuiqingcai.com/2048">
+<input type="button" value="放松一下" style="width: 310px; margin: 10px auto 0px; background-color: rgb(245, 138, 135); color: rgb(255, 255, 255); height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" onmouseover="this.style.backgroundColor='rgb(252, 125, 121)'" onmouseout="this.style.backgroundColor='#F58A87'"></a>
+</p></div></div>
 		</div><div class="widget widget_text"><div class="title"><h2>新浪微博</h2></div>			<div class="textwidget"><iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=2830678474&verifier=7468dc7b&dpc=1"></iframe></div>
 		</div><div class="widget widget_text"><div class="title"><h2>精品推荐</h2></div>			<div class="textwidget"><div class = "taobaotextad">
 <script type="text/javascript">
@@ -614,7 +618,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 </body>
 </html>
-<!-- Dynamic page generated in 1.454 seconds. -->
-<!-- Cached page generated by WP-Super-Cache on 2015-11-13 18:26:32 -->
+<!-- Dynamic page generated in 0.294 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-02-11 23:41:18 -->
 
 <!-- super cache -->
