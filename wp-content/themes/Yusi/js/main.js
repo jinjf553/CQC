@@ -26,26 +26,34 @@ return this;
 $(document).ready(function(){
 
 	$('#SOHU_MAIN .head-img-gw img').wait(function(){
-	var imgs = new Array();
-	imgs[0] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111154.jpg';
-	imgs[1] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111447.jpg';
-	imgs[2] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112058.jpg';
-	imgs[3] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112112.jpg';
-	imgs[4] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112129.jpg';
-	imgs[5] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112155.jpg';
-	
-		console.log('dsfsf');
+		var imgs = new Array();
+		imgs[0] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111154.jpg';
+		imgs[1] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111447.jpg';
+		imgs[2] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112058.jpg';
+		imgs[3] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112112.jpg';
+		imgs[4] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112129.jpg';
+		imgs[5] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112155.jpg';
+		
+			
 		$('.head-img-gw img[src*="avatar"]').each(function(){
-		var rand = Math.floor(Math.random()*imgs.length);
-		$(this).attr("src",imgs[rand]);
-	});
+			var rand = Math.floor(Math.random()*imgs.length);
+			$(this).attr("src",imgs[rand]);
+		});
 	});
 	$('#SOHUCS #SOHU_MAIN .section-cbox-w .post-default-b').wait(function(){
-		console.log('sdff');
 		setTimeout(function() {
-		$('#SOHU_MAIN .section-cbox-w .post-default-b').css('border', '1px solid #ccd4d9');
-
-	}, 200);
+			$('#SOHU_MAIN .section-cbox-w .post-default-b').css('border', '1px solid #ccd4d9');
+		}, 200);
 	});
 	
 });
+
+$(function(){
+	// $('a').on('click', function(){
+	// 	console.log($("#iframeu2027169_0").contents().html());
+	// 	console.log($("#iframeu1959939_0").contents().find('.container a:first-child').attr('href'));
+	// 	$('#iframeu1959939_0').contents().find('.container a:first-child').click();
+	// });
+	
+});
+
