@@ -1,1 +1,0 @@
-<?php die(); ?>{"headers":{"Vary":"Vary: Cookie","Last-Modified":"Last-Modified: Fri, 19 Feb 2016 14:39:39 GMT","Content-Type":"Content-Type: text\/xml; charset=UTF-8","X-Pingback":"X-Pingback: http:\/\/cuiqingcai.com\/xmlrpc.php","ETag":"ETag: \"c6ce0052d89dc524058c43e4074854c0\""},"uri":"cuiqingcai.com\/feed","blog_id":1,"post":0,"key":"cuiqingcai.com80\/feed"}
