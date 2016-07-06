@@ -23,6 +23,13 @@ if( dopt('d_footcode_b') ) echo dopt('d_footcode');
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ef185224776ec2561c9f7066ead4f24' type='text/javascript'%3E%3C/script%3E"));
 </script>
-
+<script>
+setTimeout(function(){
+	
+$('#cpv6_left_lower,#cpv6_right_lower').css({
+'width': 0
+});
+}, 500);
+</script>
 </body>
 </html>

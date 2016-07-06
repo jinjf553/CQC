@@ -57,8 +57,8 @@ span .action-popover .popover-content  .bds_more{
 	text-align: center;
 	float:none !important;
 }
-.taobaotextad{
-padding: 12px;
+.side-ad {
+padding: 10px 30px 20px 30px;
 }
 .friend-links {
 	padding:10px;
@@ -98,7 +98,7 @@ padding: 12px;
 		font-size: 13px;
 		float:left;
 		height: 11px;
-		line-height: 11px;
+		line-height: 13px;
 	}
 	.excerpt header .label .label-arrow{
 		top:5px !important;
@@ -126,4 +126,22 @@ padding-top:20px !important;
 }
 #SOHU_MAIN .section-cbox-w .post-default-b {
 	border: 1px solid #ccd4d9 !important;
+}
+.p-sm {
+padding:10px;
+}
+.meta-slider {
+margin:15px;
+width: 330px !important;
+padding-bottom: 15px;
+}
+.meta-slider .theme-bar.slider-wrapper {
+border:none;
+}
+.meta-slider .nivo-caption {
+background: rgba(0,0,0,0.3);
+}
+.meta-slider .nivoSlider {
+max-height: 186px;
+overflow:hidden;
 }

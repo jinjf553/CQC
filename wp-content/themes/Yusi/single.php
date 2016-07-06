@@ -15,7 +15,7 @@
 				?>
 				<span class="muted"><i class="fa fa-user"></i> <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>"><?php echo get_the_author() ?></a></span>
 				<time class="muted"><i class="fa fa-clock-o"></i> <?php echo timeago( get_gmt_from_date(get_the_time('Y-m-d G:i:s')) )?></time>
-				<span class="muted"><i class="fa fa-eye"></i> <?php deel_views('℃'); ?></span>
+				<span class="muted"><i class="fa fa-eye"></i> <?php deel_views('浏览'); ?></span>
 				<?php if ( comments_open() ) echo '<span class="muted"><i class="fa fa-comments-o"></i> <a href="'.get_comments_link().'">'.get_comments_number('0', '1', '%').'评论</a></span>'; ?>
 				<?php edit_post_link('[编辑]'); ?>
 			</div>
@@ -52,6 +52,7 @@
 		<?php if( dopt('d_adpost_02_b') ) echo '<div id="comment-ad" class="banner banner-related">'.dopt('d_adpost_02').'</div>'; ?>
 		<?php comments_template('', true); ?>
 		<?php if( dopt('d_adpost_03_b') ) echo '<div class="banner banner-comment">'.dopt('d_adpost_03').'</div>'; ?>
+	
 	</div>
 </div>
 <?php get_sidebar(); get_footer(); ?>

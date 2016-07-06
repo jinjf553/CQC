@@ -7,64 +7,138 @@
  */
 
 class ChangYan_Client {
-	
-	var $userAgent;
-	var $http;
-	
-	public function __construct () {
-		global $wp_version;
-		$this->http = new WP_Http();
-		$this->userAgent = 'WordPress/' . $wp_version . '|ChangYan/'. ChangYan_Handler::version;
-	}
 
-    /**
-     *
-     * @param $url
-     * @param $params
-     * @thorws Exception
-     * @return array
+    public function __construct () {
+        global $wp_version;
+    }
+
+    /*
+     * return : plaintext or array
+     * */
+    public function httpRequest($url,$method,$param) {
+        $post = null;
+        switch ($method) {
+        case 'GET':
+            $url = $url.'?'.http_build_query($param);
+            break;
+        case 'POST':
+            $post = $param;
+            break;
+        }
+        $response = $this->send($url,0,$post,null,$post,10);
+        $json = json_decode($response,true);
+        return $json==null?$response:$json;
+    }
+
+    /*
+     * send http request
+     * @param: url
+     * @post: string or array
+     * @cookie: string, e.g. "key1=xx; key2=xx"
+     * @return: mixed
+     * @usage:
+     *  send get request: request($url.'?'.http_build_query($get_array))
+     *  send post request: request($url, 0, $post_array)
      */
-	
-    public function httpRequest($url, $method, $params) {
-        require_once 'Exception.php';
-		$args = array(
-			'method' => $method,
-			'timeout' => 600,
-			'redirection' => 5,
-			'httpversion' => '1.0',
-			'user-agent' => $this->userAgent,
-			'headers' => array('Expect'=>''),
-			'sslverify' => false,
-		);
-		switch($method){
-			case 'GET':
-				$url .= '?' . http_build_query($params, null, '&');	
-				break;
-			case 'POST':
-				$args['body'] = $params;
-                break;
-			default:
-		}
-		$response = $this->http->request($url, $args);
-			
-		if (isset($response->errors)) {
-			if (isset($response->errors['http_request_failed'])){
-				$message = $response->errors['http_request_failed'][0];
-				if ($message == 'name lookup timed out')
-					$message = 'DNS解析超时，请重试或检查你的主机的域名解析(DNS)设置.';
-				elseif (stripos($message, 'Could not open handle for fopen') === 0)
-					$message = '无法打开fopen句柄，请重试或联系畅言技术工程师。http://changyan.sohu.com/';
-				elseif (stripos($message, 'Couldn\'t resolve host') === 0)
-					$message = '无法解析changyan.sohu.com域名，请重试或检查你的主机的域名解析(DNS)设置.';
-				elseif (stripos($message, 'Operation timed out after ') === 0)
-					$message = '操作超时, 请重试或联系畅言技术工程师。http://changyan.sohu.com/';
-				throw new Http_Exception($message, Http_Exception::REQUEST_TIMED_OUT);
-			}
-            else
-            	throw new Http_Exception('连接服务器失败, 详细信息：' . json_encode($response->errors), Http_Exception::REQUEST_TIMED_OUT);
-		}
+    public function send($url, $limit=0, $post='', $cookie='', $timeout=10)
+    {
+        $return = '';
+        $matches = parse_url($url);
+        $scheme = $matches['scheme'];
+        $host = $matches['host'];
+        $path = $matches['path'] ? $matches['path'].(@$matches['query'] ? '?'.$matches['query'] : '') : '/';
+        $port = !empty($matches['port']) ? $matches['port'] : 80;
 
-		$json = json_decode($response['body'], true);
-		return $json === null ? $response['body'] : $json;
-	}
+        if (function_exists('curl_init') && function_exists('curl_exec')) {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $scheme.'://'.$host.':'.$port.$path);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            if ($post) {
+                curl_setopt($ch, CURLOPT_POST, 1);
+                $content = is_array($post) ? http_build_query($post) : $post;
+                curl_setopt($ch, CURLOPT_POSTFIELDS, urldecode($content));
+            }
+            if ($cookie) {
+                curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+            }
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 900);
+            $data = curl_exec($ch);
+            $status = curl_getinfo($ch);
+            $errno = curl_errno($ch);
+            curl_close($ch);
+            if ($errno || $status['http_code'] != 200) {
+                return;
+            } else {
+                return !$limit ? $data : substr($data, 0, $limit);
+            }
+        }
+
+        if ($post) {
+            $content = is_array($post) ? urldecode(http_build_query($post)) : $post;
+            $out = "POST $path HTTP/1.0\r\n";
+            $header = "Accept: */*\r\n";
+            $header .= "Accept-Language: zh-cn\r\n";
+            $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
+            $header .= "User-Agent: ".@$_SERVER['HTTP_USER_AGENT']."\r\n";
+            $header .= "Host: $host:$port\r\n";
+            $header .= 'Content-Length: '.strlen($content)."\r\n";
+            $header .= "Connection: Close\r\n";
+            $header .= "Cache-Control: no-cache\r\n";
+            $header .= "Cookie: $cookie\r\n\r\n";
+            $out .= $header.$content;
+        } else {
+            $out = "GET $path HTTP/1.0\r\n";
+            $header = "Accept: */*\r\n";
+            $header .= "Accept-Language: zh-cn\r\n";
+            $header .= "User-Agent: ".@$_SERVER['HTTP_USER_AGENT']."\r\n";
+            $header .= "Host: $host:$port\r\n";
+            $header .= "Connection: Close\r\n";
+            $header .= "Cookie: $cookie\r\n\r\n";
+            $out .= $header;
+        }
+
+        $fpflag = 0;
+        $fp = false;
+        if (function_exists('fsocketopen')) {
+            $fp = fsocketopen($host, $port, $errno, $errstr, $timeout);
+        }
+        if (!$fp) {
+            $context = stream_context_create(array(
+                'http' => array(
+                    'method' => $post ? 'POST' : 'GET',
+                    'header' => $header,
+                    'content' => $content,
+                    'timeout' => $timeout,
+                ),
+            ));
+            $fp = @fopen($scheme.'://'.$host.':'.$port.$path, 'b', false, $context);
+            $fpflag = 1;
+        }
+
+        if (!$fp) {
+            return '';
+        } else {
+            stream_set_blocking($fp, true);
+            stream_set_timeout($fp, $timeout);
+            @fwrite($fp, $out);
+            $status = stream_get_meta_data($fp);
+            if (!$status['timed_out']) {
+                while (!feof($fp) && !$fpflag) {
+                    if (($header = @fgets($fp)) && ($header == "\r\n" ||  $header == "\n")) {
+                        break;
+                    }
+                }
+                if ($limit) {
+                    $return = stream_get_contents($fp, $limit);
+                } else {
+                    $return = stream_get_contents($fp);
+                }
+            }
+            @fclose($fp);
+            return $return;
+        }
+    }
+    
 }

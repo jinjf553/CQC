@@ -4,7 +4,7 @@ Donate link: http://changyan.sohu.com/
 Tags: comments, spam, social, share, qzone, weibo, youyan, duoshuo, pinglunla, widget, disqus, sohu, changyan, 畅言, 评论, 社会化, 分享, 微博, QQ, 腾讯, 新浪微博, 垃圾评论 
 Requires at least: 3.0
 Tested up to: 4.2.2
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -126,8 +126,11 @@ VIP账号，拥有分频道管理与统计分析、管理员体系设置、一�
 = 2.0.3 =
 * 自适应评论框支持PC & Wap广告；
 
-= 2.0.3 =
+= 2.0.4 =
 * bugfix；
+
+= 2.0.5 =
+* 解决无法登陆畅言账号的问题；
 
 == DEMO ==
 
