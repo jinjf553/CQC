@@ -38,7 +38,7 @@ if($diff<12){echo '<img src="'.get_bloginfo("template_url").'/img/new.gif" alt="
 		<span class="muted"><i class="fa fa-user"></i> <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>"><?php echo get_the_author() ?></a></span>
 	<?php } ?>
 	<?php if( !$_time ){ ?><span class="muted"><i class="fa fa-clock-o"></i> <?php echo timeago( get_gmt_from_date(get_the_time('Y-m-d G:i:s')) ) ?></span><?php } ?>
-	<?php if( !$_views ){ ?><span class="muted"><i class="fa fa-eye"></i> <?php deel_views('℃'); ?></span><?php } ?>
+	<?php if( !$_views ){ ?><span class="muted"><i class="fa fa-eye"></i> <?php deel_views('浏览'); ?></span><?php } ?>
 	<?php if( !$_comment ){ ?><span class="muted"><i class="fa fa-comments-o"></i> <?php 
 			if ( comments_open() ) echo '<a target="_blank" href="'.get_comments_link().'">'.get_comments_number('0', '1', '%').'评论</a>'
 		?></span><?php } ?>
