@@ -31,5 +31,20 @@ $('#cpv6_left_lower,#cpv6_right_lower').css({
 });
 }, 500);
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var imgs = new Array();
+	imgs[0] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111154.jpg';
+	imgs[1] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111447.jpg';
+	imgs[2] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112058.jpg';
+	imgs[3] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112112.jpg';
+	imgs[4] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112129.jpg';
+	imgs[5] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112155.jpg';
+	$('.ds-avatar img[src*="cdncache"], .ds-avatar img[src*="avatar-50"]').each(function(){
+		var rand = Math.floor(Math.random()*imgs.length);
+		$(this).attr("src",imgs[rand]);
+	})
+});
+</script>
 </body>
 </html>
