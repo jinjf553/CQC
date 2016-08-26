@@ -360,7 +360,7 @@ function comment_mail_notify($comment_id) {
   $notify = $parent_id ? get_comment($parent_id)->comment_mail_notify : '0';
   $spam_confirmed = $comment->comment_approved;
   if ($parent_id != '' && $spam_confirmed != 'spam' && $notify == '1') {
-	$wp_email = 'no-reply@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME'])); // e-mail 发出点, no-reply 可改为可用的 e-mail.
+	$wp_email = 'no-reply@' . preg_replace('/#^www\.#/', '', strtolower($_SERVER['SERVER_NAME'])); // e-mail 发出点, no-reply 可改为可用的 e-mail.
 	$to = trim(get_comment($parent_id)->comment_author_email);
 	$subject = 'Hi，您在 [' . get_option("blogname") . '] 的留言有人回复啦！';
 	$message = '
