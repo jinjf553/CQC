@@ -19,10 +19,10 @@ class M_NextGen_Admin extends C_Base_Module
 			'photocrati-nextgen_admin',
 			'NextGEN Administration',
 			'Provides a framework for adding Administration pages',
-			'0.9',
-			'http://www.nextgen-gallery.com',
+			'0.10',
+			'https://www.imagely.com/wordpress-gallery-plugin/nextgen-gallery/',
 			'Photocrati Media',
-			'http://www.photocrati.com'
+			'https://www.imagely.com'
 		);
 
 		C_Photocrati_Installer::add_handler($this->module_id, 'C_NextGen_Admin_Installer');
@@ -93,19 +93,34 @@ class M_NextGen_Admin extends C_Base_Module
 	function _register_hooks()
 	{
         // Register scripts
-        add_action('init', array(&$this, 'register_scripts'), 9);
+        add_action('init', array($this, 'register_scripts'), 9);
 
 		// Provides menu options for managing NextGEN Settings
-		add_action('admin_menu', array(&$this, 'add_menu_pages'), 999);
+		add_action('admin_menu', array($this, 'add_menu_pages'), 999);
 
         // Define routes
-        add_action('ngg_routes', array(&$this, 'define_routes'));
+        add_action('ngg_routes', array($this, 'define_routes'));
 
 		// Provides admin notices
 		$notices = C_Admin_Notification_Manager::get_instance();
 		add_action('init', array($notices, 'serve_ajax_request'));
 		add_action('admin_footer', array($notices, 'enqueue_scripts'));
 		add_action('all_admin_notices', array($notices, 'render'));
+		
+		$php_id = 0;
+
+		if (defined('PHP_VERSION_ID')) {
+			$php_id = PHP_VERSION_ID;
+		}
+		else {
+			$version = explode('.', PHP_VERSION);
+
+			$php_id = ($version[0] * 10000 + $version[1] * 100 + $version[2]);
+		}
+		
+		if ($php_id < 50300) {
+			$notices->add("ngg_php52_deprecation", array("message" => __('PHP 5.2 will be deprecated in a future version of NextGEN. Please upgrade your PHP installation to 5.3 or above.', 'nggallery')));
+		}
 	}
 
     function define_routes($router)
@@ -118,16 +133,47 @@ class M_NextGen_Admin extends C_Base_Module
     function register_scripts()
     {
         $router = C_Router::get_instance();
-        wp_register_script('gritter', $router->get_static_url('photocrati-nextgen_admin#gritter/gritter.min.js'), array('jquery'));
-        wp_register_style('gritter',  $router->get_static_url('photocrati-nextgen_admin#gritter/css/gritter.css'));
-        wp_register_script('ngg_progressbar', $router->get_static_url('photocrati-nextgen_admin#ngg_progressbar.js'), array('gritter'));
-        wp_register_style('ngg_progressbar', $router->get_static_url('photocrati-nextgen_admin#ngg_progressbar.css'), array('gritter'));
-        wp_register_style('select2', $router->get_static_url('photocrati-nextgen_admin#select2/select2.css'));
-        wp_register_script('select2', $router->get_static_url('photocrati-nextgen_admin#select2/select2.modded.js'));
+        wp_register_script(
+	        'gritter',
+	        $router->get_static_url('photocrati-nextgen_admin#gritter/gritter.min.js'),
+	        array('jquery'),
+	        NGG_SCRIPT_VERSION
+        );
+        wp_register_style(
+	        'gritter',
+	        $router->get_static_url('photocrati-nextgen_admin#gritter/css/gritter.css'),
+	        FALSE,
+	        NGG_SCRIPT_VERSION
+        );
+        wp_register_script(
+	        'ngg_progressbar',
+	        $router->get_static_url('photocrati-nextgen_admin#ngg_progressbar.js'),
+	        array('gritter'),
+	        NGG_SCRIPT_VERSION
+        );
+        wp_register_style(
+	        'ngg_progressbar',
+	        $router->get_static_url('photocrati-nextgen_admin#ngg_progressbar.css'),
+	        array('gritter'),
+	        NGG_SCRIPT_VERSION
+        );
+        wp_register_style(
+	        'ngg_select2',
+	        $router->get_static_url('photocrati-nextgen_admin#select2/select2.css'),
+	        FALSE,
+	        NGG_SCRIPT_VERSION
+        );
+        wp_register_script(
+	        'ngg_select2',
+	        $router->get_static_url('photocrati-nextgen_admin#select2/select2.modded.js'),
+	        FALSE,
+	        NGG_SCRIPT_VERSION
+        );
         wp_register_script(
             'jquery.nextgen_radio_toggle',
             $router->get_static_url('photocrati-nextgen_admin#jquery.nextgen_radio_toggle.js'),
-            array('jquery')
+            array('jquery'),
+	        NGG_SCRIPT_VERSION
         );
 
         if (preg_match("#/wp-admin/post(-new)?.php#", $_SERVER['REQUEST_URI']))
@@ -136,7 +182,12 @@ class M_NextGen_Admin extends C_Base_Module
             wp_enqueue_style('ngg_progressbar');
         }
 
-        wp_register_style('ngg-jquery-ui', $router->get_static_url('photocrati-nextgen_admin#jquery-ui/jquery-ui-1.10.4.custom.css'));
+        wp_register_style(
+	        'ngg-jquery-ui',
+	        $router->get_static_url('photocrati-nextgen_admin#jquery-ui/jquery-ui-1.10.4.custom.css'),
+	        FALSE,
+	        NGG_SCRIPT_VERSION
+        );
     }
 
 	/**
@@ -183,7 +234,10 @@ class C_NextGen_Admin_Installer
 		$cleanup = FALSE;
 		foreach ($modules as $module) {
 			if (strpos($module, $module_name) !== FALSE) {
-				if (version_compare(array_pop(explode('|', $module)), '0.3') == -1) {
+				// Leave $module as-is: inside version_compare() will warn about passing items by reference
+				$module = explode('|', $module);
+				$val    = array_pop($module);
+				if (version_compare($val, '0.3') == -1) {
 					$cleanup = TRUE;
 				}
 				break;

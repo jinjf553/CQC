@@ -3,8 +3,8 @@
 	<div class="content">
 		<header class="archive-header"> 
 			<h1><?php 
-				if(is_day()) echo the_time('Y年m月j日');
-				elseif(is_month()) echo the_time('Y年m月');
+				if(is_day()) echo the_time('Y年M月j日');
+				elseif(is_month()) echo the_time('Y年M月');
 				elseif(is_year()) echo the_time('Y年'); 
 			?>的内容</h1>
 		</header>

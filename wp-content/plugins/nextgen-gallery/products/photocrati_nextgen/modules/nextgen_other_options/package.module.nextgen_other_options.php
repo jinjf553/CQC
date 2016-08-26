@@ -289,10 +289,7 @@ Choose [Cancel] to Stop, [OK] to proceed.', 'nggallery'), 'slug_field' => $this-
     {
         $cache = C_Cache::get_instance();
         $cache->flush_galleries();
-        C_Photocrati_Cache::flush();
-        C_Photocrati_Cache::flush('displayed_galleries');
-        C_Photocrati_Cache::flush('displayed_gallery_rendering');
-        C_Photocrati_Cache::flush('mvc');
+        C_Photocrati_Transient_Manager::flush();
     }
     public function save_action()
     {
@@ -307,7 +304,11 @@ Choose [Cancel] to Stop, [OK] to proceed.', 'nggallery'), 'slug_field' => $this-
             }
             // If the router slug has changed, then flush the cache
             if ($settings['router_param_slug'] != $this->object->get_model()->router_param_slug) {
-                C_Photocrati_Cache::flush();
+                C_Photocrati_Transient_Manager::flush('displayed_gallery_rendering');
+            }
+            // Do not allow this field to ever be unset
+            if (empty($settings['maximum_entity_count']) || (int) $settings['maximum_entity_count'] <= 0) {
+                $settings['maximum_entity_count'] = 500;
             }
             // Save both setting groups
             $this->object->get_model()->set($settings)->save();
@@ -320,8 +321,8 @@ class A_Other_Options_Controller extends Mixin
     public function enqueue_backend_resources()
     {
         $this->call_parent('enqueue_backend_resources');
-        wp_enqueue_script('nextgen_settings_page', $this->get_static_url('photocrati-nextgen_other_options#nextgen_settings_page.js'), array('jquery-ui-accordion', 'jquery-ui-tooltip', 'wp-color-picker', 'jquery.nextgen_radio_toggle'));
-        wp_enqueue_style('nextgen_settings_page', $this->get_static_url('photocrati-nextgen_other_options#nextgen_settings_page.css'));
+        wp_enqueue_script('nextgen_settings_page', $this->get_static_url('photocrati-nextgen_other_options#nextgen_settings_page.js'), array('jquery-ui-accordion', 'jquery-ui-tooltip', 'wp-color-picker', 'jquery.nextgen_radio_toggle'), NGG_SCRIPT_VERSION);
+        wp_enqueue_style('nextgen_settings_page', $this->get_static_url('photocrati-nextgen_other_options#nextgen_settings_page.css'), FALSE, NGG_SCRIPT_VERSION);
     }
     public function get_page_title()
     {
@@ -356,7 +357,7 @@ Choose [Cancel] to Stop, [OK] to proceed.', 'nggallery')), TRUE);
     {
         global $wpdb;
         // Flush the cache
-        C_Photocrati_Cache::flush('all');
+        C_Photocrati_Transient_Manager::flush();
         // Uninstall the plugin
         $settings = C_NextGen_Settings::get_instance();
         if (defined('NGG_PRO_PLUGIN_VERSION') || defined('NEXTGEN_GALLERY_PRO_VERSION')) {
@@ -372,7 +373,9 @@ Choose [Cancel] to Stop, [OK] to proceed.', 'nggallery')), TRUE);
         foreach ($roles as $role) {
             $role = get_role($role);
             foreach ($capabilities as $capability) {
-                $role->remove_cap($capability);
+                if (!is_null($role)) {
+                    $role->remove_cap($capability);
+                }
             }
         }
         // Some installations of NextGen that upgraded from 1.9x to 2.0x have duplicates installed,
@@ -523,8 +526,9 @@ class A_Watermarking_Ajax_Actions extends Mixin
                 $settings->load();
             }
             return array('thumbnail_url' => $thumbnail_url);
+        } else {
+            return array('thumbnail_url' => '', 'error' => 'You are not allowed to perform this operation');
         }
-        return null;
     }
 }
 class A_Watermarks_Form extends Mixin

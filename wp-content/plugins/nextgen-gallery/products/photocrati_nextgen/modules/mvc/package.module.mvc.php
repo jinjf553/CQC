@@ -10,15 +10,19 @@ class A_MVC_Fs extends Mixin
 {
     static $_lookups = array();
     static $_non_minified_modules = array();
+    public function _get_cache_key()
+    {
+        return C_Photocrati_Transient_Manager::create_key('MVC', 'find_static_abspath');
+    }
     public function initialize()
     {
         register_shutdown_function(array(&$this, 'cache_lookups'));
-        self::$_lookups = C_Photocrati_Cache::get('find_static_abspath', array(), 'MVC');
+        //self::$_lookups = C_Photocrati_Transient_Manager::fetch($this->_get_cache_key(), array());
         self::$_non_minified_modules = apply_filters('ngg_non_minified_modules', array());
     }
     public function cache_lookups()
     {
-        C_Photocrati_Cache::set('find_static_abspath', self::$_lookups, 'MVC');
+        C_Photocrati_Transient_Manager::update($this->_get_cache_key(), self::$_lookups);
     }
     /**
      * Gets the absolute path to a static resource. If it doesn't exist, then NULL is returned
@@ -48,6 +52,12 @@ class A_MVC_Fs extends Mixin
             }
             if (!SCRIPT_DEBUG && !in_array($module, self::$_non_minified_modules) && strpos($path, 'min.') === FALSE && strpos($path, 'pack.') === FALSE && strpos($path, 'packed.') === FALSE && preg_match('/\\.(js|css)$/', $path) && !$filter) {
                 $path = preg_replace('#\\.[^\\.]+$#', '.min\\0', $path);
+            }
+            // In case NextGen is in a symlink we make $mod_dir relative to the NGG root and then rebuild it
+            // using WP_PLUGIN_DIR; without this NGG-in-symlink creates URL that reference the file abspath
+            if (is_link($this->object->join_paths(WP_PLUGIN_DIR, basename(NGG_PLUGIN_DIR)))) {
+                $mod_dir = str_replace(dirname(NGG_PLUGIN_DIR), '', $mod_dir);
+                $mod_dir = $this->object->join_paths(WP_PLUGIN_DIR, $mod_dir);
             }
             // Create the absolute path to the file
             $path = $this->object->join_paths($mod_dir, C_NextGen_Settings::get_instance()->get('mvc_static_dirname'), $path);
@@ -101,11 +111,15 @@ class A_MVC_Router extends Mixin
     public function initialize()
     {
         register_shutdown_function(array(&$this, 'cache_lookups'));
-        self::$_lookups = C_Photocrati_Cache::get('get_static_url', array(), 'MVC');
+        self::$_lookups = C_Photocrati_Transient_Manager::fetch($this->_get_cache_key(), array());
+    }
+    public function _get_cache_key()
+    {
+        return C_Photocrati_Transient_Manager::create_key('MVC', 'get_static_url');
     }
     public function cache_lookups()
     {
-        C_Photocrati_Cache::set('get_static_url', self::$_lookups, 'MVC');
+        C_Photocrati_Transient_Manager::update($this->_get_cache_key(), self::$_lookups);
     }
     public function _get_static_url_key($path, $module = FALSE)
     {
@@ -122,11 +136,22 @@ class A_MVC_Router extends Mixin
     {
         $retval = NULL;
         $key = $this->object->_get_static_url_key($path, $module);
-        /// Have we looked up this url before?
+        // Have we looked up this url before?
         if (isset(self::$_lookups[$key])) {
             $retval = self::$_lookups[$key];
-        } else {
-            $fs = C_Fs::get_instance();
+        }
+        $fs = C_Fs::get_instance();
+        // Check for a user-supplied override
+        if (NULL === $retval) {
+            $formatted_path = $fs->parse_formatted_path($path);
+            $abspath = $fs->join_paths($this->object->get_static_override_dir($formatted_path[1]), $formatted_path[0]);
+            if (@is_file($abspath)) {
+                $abspath = str_replace($fs->get_document_root('content'), '', $abspath);
+                $retval = self::$_lookups[$key] = $this->object->join_paths($this->object->get_base_url('content'), str_replace('\\', '/', $abspath));
+            }
+        }
+        // We'll have to calculate the url from our own modules
+        if (NULL === $retval) {
             $path = $fs->find_static_abspath($path, $module);
             $original_length = strlen($path);
             $roots = array('plugins', 'plugins_mu', 'templates', 'stylesheets');
@@ -145,7 +170,40 @@ class A_MVC_Router extends Mixin
                 $retval = self::$_lookups[$key] = $this->object->join_paths($this->object->get_base_url('root'), str_replace('\\', '/', $path));
             }
         }
+        // For the "Sage" theme and others using the "Soil" plugin "Roots" theme was re-branded to "Sage" theme
+        // 2015-02-25; see https://roots.io/new-website-sage-and-the-future/
+        if ((current_theme_supports('soil-relative-urls') || current_theme_supports('root-relative-urls')) && strpos($retval, '/') !== 0) {
+            $retval = '/' . $retval;
+        }
         return $retval;
+    }
+    /**
+     * @param string $module_id
+     *
+     * @return string $dir
+     */
+    public function get_static_override_dir($module_id = NULL)
+    {
+        $fs = C_Fs::get_instance();
+        $dir = $fs->join_paths(WP_CONTENT_DIR, 'ngg');
+        if (!@file_exists($dir)) {
+            wp_mkdir_p($dir);
+        }
+        $dir = $fs->join_paths($dir, 'modules');
+        if (!@file_exists($dir)) {
+            wp_mkdir_p($dir);
+        }
+        if ($module_id) {
+            $dir = $fs->join_paths($dir, $module_id);
+            if (!@file_exists($dir)) {
+                wp_mkdir_p($dir);
+            }
+            $dir = $fs->join_paths($dir, 'static');
+            if (!@file_exists($dir)) {
+                wp_mkdir_p($dir);
+            }
+        }
+        return $dir;
     }
 }
 if (preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
@@ -383,23 +441,18 @@ class C_MVC_View extends C_Component
     public $_engine = '';
     public $_params = array();
     public $_queue = array();
-    public function define($template, $params = array(), $engine = 'php', $context = FALSE)
+    public function __construct($template, $params = array(), $engine = 'php', $context = FALSE)
+    {
+        $this->_template = $template;
+        $this->_params = (array) $params;
+        $this->_engine = $engine;
+        parent::__construct();
+    }
+    public function define($context = FALSE)
     {
         parent::define($context);
         $this->implement('I_MVC_View');
         $this->add_mixin('Mixin_Mvc_View_Instance_Methods');
-    }
-    /**
-     * Initialize the view with some parameters
-     * @param array $params
-     * @param context $context
-     */
-    public function initialize($template, $params = array(), $engine = 'php', $context = FALSE)
-    {
-        parent::initialize($context);
-        $this->_template = $template;
-        $this->_params = (array) $params;
-        $this->_engine = $engine;
     }
 }
 class Mixin_Mvc_View_Instance_Methods extends Mixin
@@ -553,9 +606,45 @@ class Mixin_Mvc_View_Instance_Methods extends Mixin
         }
         // Append the suffix
         $path = $path . '.php';
-        $retval = $fs->join_paths($this->object->get_registry()->get_module_dir($module), $settings->mvc_template_dirname, $path);
+        // First check if the template is in the override dir
+        if (!($retval = $this->object->get_template_override_abspath($module, $path))) {
+            $retval = $fs->join_paths($this->object->get_registry()->get_module_dir($module), $settings->mvc_template_dirname, $path);
+        }
         if (!@file_exists($retval)) {
             throw new RuntimeException("{$retval} is not a valid MVC template");
+        }
+        return $retval;
+    }
+    public function get_template_override_dir($module = NULL)
+    {
+        $fs = C_Fs::get_instance();
+        $dir = $fs->join_paths(WP_CONTENT_DIR, 'ngg');
+        if (!@file_exists($dir)) {
+            wp_mkdir_p($dir);
+        }
+        $dir = $fs->join_paths($dir, 'modules');
+        if (!@file_exists($dir)) {
+            wp_mkdir_p($dir);
+        }
+        if ($module) {
+            $dir = $fs->join_paths($dir, $module);
+            if (!@file_exists($dir)) {
+                wp_mkdir_p($dir);
+            }
+            $dir = $fs->join_paths($dir, 'templates');
+            if (!@file_exists($dir)) {
+                wp_mkdir_p($dir);
+            }
+        }
+        return $dir;
+    }
+    public function get_template_override_abspath($module, $filename)
+    {
+        $fs = C_Fs::get_instance();
+        $retval = NULL;
+        $abspath = $fs->join_paths($this->object->get_template_override_dir($module), $filename);
+        if (@file_exists($abspath)) {
+            $retval = $abspath;
         }
         return $retval;
     }

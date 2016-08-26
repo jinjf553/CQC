@@ -222,6 +222,9 @@ class Mixin_Fs_Instance_Methods extends Mixin
                 @unlink($abspath);
             } else {
                 foreach (scandir($abspath) as $relpath) {
+                    if (in_array($relpath, array('.', '..'))) {
+                        continue;
+                    }
                     $sub_abspath = $this->join_paths($abspath, $relpath);
                     $this->object->delete($sub_abspath);
                 }
@@ -268,8 +271,12 @@ class Mixin_Fs_Instance_Methods extends Mixin
         }
         // Join the paths together
         $retval = implode(DIRECTORY_SEPARATOR, $retval);
-        if (strpos($retval, $this->get_document_root()) !== 0) {
+        if (strpos($retval, $this->get_document_root()) !== 0 && strtoupper(substr(PHP_OS, 0, 3)) != 'WIN') {
             $retval = DIRECTORY_SEPARATOR . trim($retval, '/\\');
+        }
+        // Check for and adjust Windows UNC paths (\\server\share\) for network mounted sites
+        if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN' && substr($this->get_document_root(), 0, 2) === '\\\\') {
+            $retval = '\\\\' . $retval;
         }
         return $retval;
     }

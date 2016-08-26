@@ -113,7 +113,7 @@ class A_NextGen_Basic_ImageBrowser_Controller extends Mixin
         if (!empty($_POST['ajax_referrer'])) {
             $displayed_gallery->display_settings['ngg_triggers_display'] = 'never';
         }
-        if (!empty($display_settings['template'])) {
+        if (!empty($display_settings['template']) && $display_settings['template'] != 'default') {
             $this->object->add_mixin('Mixin_NextGen_Basic_Templates');
             $picture->href_link = $picture->get_href_link();
             $picture->previous_image_link = $prev_image_link;
@@ -148,7 +148,7 @@ class A_NextGen_Basic_ImageBrowser_Controller extends Mixin
     public function enqueue_frontend_resources($displayed_gallery)
     {
         $this->call_parent('enqueue_frontend_resources', $displayed_gallery);
-        wp_enqueue_style('nextgen_basic_imagebrowser_style', $this->get_static_url('photocrati-nextgen_basic_imagebrowser#style.css'));
+        wp_enqueue_style('nextgen_basic_imagebrowser_style', $this->get_static_url('photocrati-nextgen_basic_imagebrowser#style.css'), FALSE, NGG_SCRIPT_VERSION);
         $this->enqueue_ngg_styles();
     }
 }

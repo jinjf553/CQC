@@ -90,7 +90,7 @@ class A_NextGen_Basic_Singlepic_Controller extends Mixin
             $size = $dynthumbs->get_size_name($params);
         }
         $thumbnail_url = $storage->get_image_url($image, $size);
-        if (!empty($display_settings['template'])) {
+        if (!empty($display_settings['template']) && $display_settings['template'] != 'default') {
             $this->object->add_mixin('A_NextGen_Basic_Template_Form');
             $this->object->add_mixin('Mixin_NextGen_Basic_Templates');
             $params = $this->object->prepare_legacy_parameters(array($image), $displayed_gallery, array('single_image' => TRUE));
@@ -138,7 +138,7 @@ class A_NextGen_Basic_Singlepic_Controller extends Mixin
     public function enqueue_frontend_resources($displayed_gallery)
     {
         $this->call_parent('enqueue_frontend_resources', $displayed_gallery);
-        wp_enqueue_style('nextgen_basic_singlepic_style', $this->get_static_url('photocrati-nextgen_basic_singlepic#nextgen_basic_singlepic.css'));
+        wp_enqueue_style('nextgen_basic_singlepic_style', $this->get_static_url('photocrati-nextgen_basic_singlepic#nextgen_basic_singlepic.css'), FALSE, NGG_SCRIPT_VERSION);
         $this->enqueue_ngg_styles();
     }
 }

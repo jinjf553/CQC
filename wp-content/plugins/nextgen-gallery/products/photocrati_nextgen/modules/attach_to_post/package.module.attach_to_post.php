@@ -145,8 +145,6 @@ class A_Attach_To_Post_Ajax extends Mixin
                 // Get the thumbnail
                 $entity->thumb_url = $storage->get_image_url($image, 'thumb', TRUE);
                 $entity->thumb_html = $storage->get_image_html($image, 'thumb');
-                $entity->max_width = $settings->thumbwidth;
-                $entity->max_height = $settings->thumbheight;
             }
         } else {
             $response['error'] = __('Missing parameters', 'nggallery');
@@ -204,7 +202,7 @@ class A_Gallery_Storage_Frame_Event extends Mixin
             $event->pid = $image->{$image->id_field};
             $event->id_field = $image->id_field;
             $event->thumb_url = $image->thumb_url;
-            C_Frame_Event_Publisher::get_instance()->add_event(array('event' => 'thumbnail_modified', 'image' => $event));
+            C_Frame_Event_Publisher::get_instance('attach_to_post')->add_event(array('event' => 'thumbnail_modified', 'image' => $event));
         }
         return $retval;
     }
@@ -223,7 +221,7 @@ class C_Attach_Controller extends C_NextGen_Admin_Page_Controller
         }
         return self::$_instances[$context];
     }
-    public function define($context)
+    public function define($context = FALSE)
     {
         if (!is_array($context)) {
             $context = array($context);
@@ -303,7 +301,7 @@ class Mixin_Attach_To_Post extends Mixin
         $this->mark_script('iris');
         $this->mark_script('wp-color-picker');
         $this->mark_script('nextgen_admin_page');
-        $this->mark_script('select2');
+        $this->mark_script('ngg_select2');
         // Enqueue frame event publishing
         wp_enqueue_script('frame_event_publisher');
         $this->object->mark_script('frame_event_publisher');
@@ -311,28 +309,29 @@ class Mixin_Attach_To_Post extends Mixin
         wp_enqueue_script('jquery-ui-tabs');
         wp_enqueue_script('jquery-ui-sortable');
         wp_enqueue_script('jquery-ui-tooltip');
-        wp_enqueue_script('ngg_tabs', $this->get_static_url('photocrati-attach_to_post#ngg_tabs.js'));
+        wp_enqueue_script('ngg_tabs', $this->get_static_url('photocrati-attach_to_post#ngg_tabs.js'), FALSE, NGG_SCRIPT_VERSION);
         $this->object->mark_script('jquery-ui-tabs');
         $this->object->mark_script('jquery-ui-sortable');
         $this->object->mark_script('jquery-ui-tooltip');
         $this->object->mark_script('ngg_tabs');
+        wp_enqueue_style('buttons');
         // Ensure select2
-        wp_enqueue_style('select2');
-        wp_enqueue_script('select2');
-        $this->object->mark_script('select2');
+        wp_enqueue_style('ngg_select2');
+        wp_enqueue_script('ngg_select2');
+        $this->object->mark_script('ngg_select2');
         // Ensure that the Photocrati AJAX library is loaded
         wp_enqueue_script('photocrati_ajax');
         $this->object->mark_script('photocrati_ajax');
         // Enqueue logic for the Attach to Post interface as a whole
-        wp_enqueue_script('ngg_attach_to_post', $this->get_static_url('photocrati-attach_to_post#attach_to_post.js'));
-        wp_enqueue_style('ngg_attach_to_post', $this->get_static_url('photocrati-attach_to_post#attach_to_post.css'));
+        wp_enqueue_script('ngg_attach_to_post', $this->get_static_url('photocrati-attach_to_post#attach_to_post.js'), FALSE, NGG_SCRIPT_VERSION);
+        wp_enqueue_style('ngg_attach_to_post', $this->get_static_url('photocrati-attach_to_post#attach_to_post.css'), FALSE, NGG_SCRIPT_VERSION);
         $this->object->mark_script('ngg_attach_to_post');
         // Enqueue backbone.js library, required by the Attach to Post display tab
         wp_enqueue_script('backbone');
         // provided by WP
         $this->object->mark_script('backbone');
         // Ensure underscore sting, a helper utility
-        wp_enqueue_script('underscore.string', $this->get_static_url('photocrati-attach_to_post#underscore.string.js'), array('underscore'), '2.3.0');
+        wp_enqueue_script('underscore.string', $this->get_static_url('photocrati-attach_to_post#underscore.string.js'), array('underscore'), NGG_SCRIPT_VERSION);
         $this->object->mark_script('underscore.string');
         // Enqueue the backbone app for the display tab
         $settings = C_NextGen_Settings::get_instance();
@@ -341,7 +340,7 @@ class Mixin_Attach_To_Post extends Mixin
         if ($this->object->_displayed_gallery->id()) {
             $display_tab_js_url .= '&id=' . $this->object->_displayed_gallery->id();
         }
-        wp_enqueue_script('ngg_display_tab', $display_tab_js_url, array('backbone', 'underscore.string', 'photocrati_ajax'));
+        wp_enqueue_script('ngg_display_tab', $display_tab_js_url, array('backbone', 'underscore.string', 'photocrati_ajax'), NGG_SCRIPT_VERSION);
         wp_localize_script('ngg_display_tab', 'ngg_displayed_gallery_preview_url', $settings->gallery_preview_url);
         $this->object->mark_script('ngg_display_tab');
         // TODO: for now mark Pro scripts to ensure they are enqueued properly, remove this after Pro upgrade with tagging added
@@ -372,7 +371,8 @@ class Mixin_Attach_To_Post extends Mixin
         $image_mapper = C_Image_Mapper::get_instance();
         // Get the first entity from the displayed gallery. We will use this
         // for a preview pic
-        $entity = array_pop($this->object->_displayed_gallery->get_included_entities(1));
+        $results = $this->object->_displayed_gallery->get_included_entities(1);
+        $entity = array_pop($results);
         $image = FALSE;
         if ($entity) {
             // This is an album or gallery
@@ -389,8 +389,10 @@ class Mixin_Attach_To_Post extends Mixin
             }
         }
         // Were we able to find a preview pic? If so, then render it
-        $image_size = $dyn_thumbs->get_size_name(array('width' => 200, 'height' => 200, 'quality' => 90, 'type' => 'jpg'));
+        $image_size = $dyn_thumbs->get_size_name(array('width' => 300, 'height' => 200, 'quality' => 90, 'type' => 'jpg', 'watermark' => FALSE, 'crop' => TRUE));
+        add_filter('ngg_before_save_thumbnail', array(&$this, 'set_igw_placeholder_text'));
         $found_preview_pic = $storage->render_image($image, $image_size, TRUE);
+        remove_filter('ngg_before_save_thumbnail', array(&$this, 'set_igw_placeholder_text'));
         // Render invalid image if no preview pic is found
         if (!$found_preview_pic) {
             $filename = $this->object->get_static_abspath('photocrati-attach_to_post#invalid_image.png');
@@ -398,6 +400,27 @@ class Mixin_Attach_To_Post extends Mixin
             readfile($filename);
             $this->render();
         }
+    }
+    /**
+     * Filter for ngg_before_save_thumbnail
+     */
+    public function set_igw_placeholder_text($thumbnail)
+    {
+        $settings = C_NextGen_Settings::get_instance();
+        $thumbnail->applyFilter(IMG_FILTER_BRIGHTNESS, -25);
+        $watermark_settings = apply_filters('ngg_igw_placeholder_line_1_settings', array('text' => __('NextGEN Gallery', 'nggallery'), 'font_color' => 'ffffff', 'font' => 'YanoneKaffeesatz-Bold.ttf', 'font_size' => 32));
+        if ($watermark_settings) {
+            $thumbnail->watermarkText = $watermark_settings['text'];
+            $thumbnail->watermarkCreateText($watermark_settings['font_color'], $watermark_settings['font'], $watermark_settings['font_size'], 100);
+            $thumbnail->watermarkImage('topCenter', 0, 72);
+        }
+        $watermark_settings = apply_filters('ngg_igw_placeholder_line_2_settings', array('text' => __('Click to edit', 'nggallery'), 'font_color' => 'ffffff', 'font' => 'YanoneKaffeesatz-Bold.ttf', 'font_size' => 15));
+        if ($watermark_settings) {
+            $thumbnail->watermarkText = $watermark_settings['text'];
+            $thumbnail->watermarkCreateText($watermark_settings['font_color'], $watermark_settings['font'], $watermark_settings['font_size'], 100);
+            $thumbnail->watermarkImage('topCenter', 0, 108);
+        }
+        return $thumbnail;
     }
     /**
      * Returns the page title of the Attach to Post interface
@@ -455,7 +478,7 @@ class Mixin_Attach_To_Post extends Mixin
      */
     public function _render_display_tab()
     {
-        return $this->object->render_partial('photocrati-attach_to_post#display_tab', array('messages' => array(), 'tabs' => $this->object->_get_display_tabs()), TRUE);
+        return $this->object->render_partial('photocrati-attach_to_post#display_tab', array('messages' => array(), 'displayed_gallery' => $this->object->_displayed_gallery, 'tabs' => $this->object->_get_display_tabs()), TRUE);
     }
     /**
      * Renders the tab used primarily for Gallery and Image creation
@@ -503,7 +526,16 @@ class Mixin_Attach_To_Post_Display_Tab extends Mixin
         $this->object->do_not_cache();
         // Ensure that JS is returned
         $this->object->set_content_type('javascript');
-        while (ob_get_level() > 0) {
+        $buffer_limit = 0;
+        $zlib = ini_get('zlib.output_compression');
+        if (!is_numeric($zlib) && $zlib == 'On') {
+            $buffer_limit = 1;
+        } else {
+            if (is_numeric($zlib) && $zlib > 0) {
+                $buffer_limit = 1;
+            }
+        }
+        while (ob_get_level() != $buffer_limit) {
             ob_end_clean();
         }
         // Get all entities used by the display tab
@@ -522,8 +554,13 @@ class Mixin_Attach_To_Post_Display_Tab extends Mixin
         $all_tags->id = 'All';
         array_unshift($tags, $all_tags);
         $display_types = array();
+        $registry = C_Component_Registry::get_instance();
         foreach ($display_type_mapper->find_all() as $display_type) {
             if (isset($display_type->hidden_from_ui) && $display_type->hidden_from_ui) {
+                continue;
+            }
+            $available = $registry->is_module_loaded($display_type->name);
+            if (!apply_filters('ngg_atp_show_display_type', $available, $display_type)) {
                 continue;
             }
             $display_types[] = $display_type;
