@@ -1,2 +1,2 @@
-##Germy's Blog
-[Germy](http://cuiqingcai.com)
+##Germey's Blog
+[Germey](http://cuiqingcai.com)
