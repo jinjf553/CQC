@@ -145,3 +145,6 @@ background: rgba(0,0,0,0.3);
 max-height: 186px;
 overflow:hidden;
 }
+.banner-navbar, .banner-site {
+    margin-bottom: 0px;
+}
