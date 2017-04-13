@@ -16,6 +16,7 @@ class AIOSEOP_Updates {
 	 *
 	 */
 	function __construct() {
+
 	}
 
 	/**
@@ -54,6 +55,13 @@ class AIOSEOP_Updates {
 				$aioseop_options['last_active_version'] = AIOSEOP_VERSION;
 				$aiosp->update_class_option( $aioseop_options );
 			}
+
+			if( ! is_network_admin() || !isset( $_GET['activate-multi'] ) ) {
+				set_transient( '_aioseop_activation_redirect', true, 30 ); // Sets 30 second transient for welcome screen redirect on activation.
+			}
+			delete_transient( 'aioseop_feed' );
+			add_action( 'admin_init', array( $this, 'aioseop_welcome' ) );
+
 		}
 
 		/**
@@ -61,6 +69,15 @@ class AIOSEOP_Updates {
 		 * just the plugin version.
 		 */
 		$this->do_feature_updates();
+	}
+
+	function aioseop_welcome(){
+		if ( get_transient( '_aioseop_activation_redirect' ) ) {
+			delete_transient( '_aioseop_activation_redirect' );
+			$aioseop_welcome = new aioseop_welcome();
+			$aioseop_welcome->init( TRUE );
+		}
+
 	}
 
 	/**
@@ -93,6 +110,7 @@ class AIOSEOP_Updates {
 			( AIOSEOPPRO && version_compare( $old_version, '2.4.9', '<' ) )
 		) {
 			$this->bad_bots_remove_seznambot_201608();
+			set_transient( '_aioseop_activation_redirect', true, 30 ); // Sets 30 second transient for welcome screen redirect on activation.
 		}
 
 	}
@@ -117,27 +135,6 @@ class AIOSEOP_Updates {
 			$aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_blocklist'] = $list;
 			update_option( 'aioseop_options', $aioseop_options );
 			$aiosp->update_class_option( $aioseop_options );
-			if ( isset( $aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_htaccess_rules'] )
-			     && 'on' === $aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_htaccess_rules']
-			) {
-				if ( ! class_exists( 'All_in_One_SEO_Pack_Bad_Robots' ) ) {
-					require_once(
-						AIOSEOP_PLUGIN_DIR .
-						'admin/aioseop_module_class.php'
-					);
-					require_once(
-						AIOSEOP_PLUGIN_DIR .
-						'modules/aioseop_bad_robots.php'
-					);
-				}
-				$aiosp_reset_htaccess = new All_in_One_SEO_Pack_Bad_Robots;
-				$aiosp_reset_htaccess->generate_htaccess_blocklist();
-			}
-			if ( ! isset( $aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_htaccess_rules'] )
-			     && extract_from_markers( get_home_path() . '.htaccess', 'Bad Bot Blocker' )
-			) {
-				insert_with_markers( get_home_path() . '.htaccess', 'Bad Bot Blocker', '' );
-			}
 		}
 	}
 
@@ -164,21 +161,6 @@ class AIOSEOP_Updates {
 			$aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_blocklist'] = $list;
 			update_option( 'aioseop_options', $aioseop_options );
 			$aiosp->update_class_option( $aioseop_options );
-
-			if ( isset( $aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_htaccess_rules'] ) && 'on' === $aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_htaccess_rules'] ) {
-
-				if ( ! class_exists( 'All_in_One_SEO_Pack_Bad_Robots' ) ) {
-					require_once( AIOSEOP_PLUGIN_DIR . 'admin/aioseop_module_class.php' );
-					require_once( AIOSEOP_PLUGIN_DIR . 'modules/aioseop_bad_robots.php' );
-				}
-
-				$aiosp_reset_htaccess = new All_in_One_SEO_Pack_Bad_Robots;
-				$aiosp_reset_htaccess->generate_htaccess_blocklist();
-			}
-
-			if ( ! isset( $aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_htaccess_rules'] ) && extract_from_markers( get_home_path() . '.htaccess', 'Bad Bot Blocker' ) ) {
-				insert_with_markers( get_home_path() . '.htaccess', 'Bad Bot Blocker', '' );
-			}
 		}
 	}
 
@@ -201,21 +183,6 @@ class AIOSEOP_Updates {
 			$aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_blocklist'] = $list;
 			update_option( 'aioseop_options', $aioseop_options );
 			$aiosp->update_class_option( $aioseop_options );
-
-			if ( isset( $aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_htaccess_rules'] ) && 'on' === $aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_htaccess_rules'] ) {
-
-				if ( ! class_exists( 'All_in_One_SEO_Pack_Bad_Robots' ) ) {
-					require_once( AIOSEOP_PLUGIN_DIR . 'admin/aioseop_module_class.php' );
-					require_once( AIOSEOP_PLUGIN_DIR . 'modules/aioseop_bad_robots.php' );
-				}
-
-				$aiosp_reset_htaccess = new All_in_One_SEO_Pack_Bad_Robots;
-				$aiosp_reset_htaccess->generate_htaccess_blocklist();
-			}
-
-			if ( ! isset( $aioseop_options['modules']['aiosp_bad_robots_options']['aiosp_bad_robots_htaccess_rules'] ) && extract_from_markers( get_home_path() . '.htaccess', 'Bad Bot Blocker' ) ) {
-				insert_with_markers( get_home_path() . '.htaccess', 'Bad Bot Blocker', '' );
-			}
 		}
 	}
 

@@ -1,12 +1,12 @@
-=== NextGEN Gallery ===
+=== NextGEN Gallery - WordPress Gallery Plugin ===
 Contributors: photocrati, imagely
-Tags: nextgen, nextgen gallery, gallery, galleries, image, images, image gallery, photo, photos, photo gallery, picture, pictures, picture gallery, album, albums, photo albums, image album, media, media gallery, thumbnails, thumbnail gallery, thumbnail galleries, slideshow, slideshows, slideshow gallery, slideshow galleries, fancybox, lightbox, responsive, responsive gallery, responsive galleries, wordpress responsive gallery, nextcellent, wordpress gallery plugin, wordpress photo gallery plugin, wp gallery, wp gallery plugins, best gallery plugin, free photo gallery, singlepic, image captions imagebrowser, watermarks, watermarking, photography, photographer
+Tags: wordpress gallery plugin, gallery, nextgen, nextgen gallery, photo gallery, image gallery, photography, slideshow, images, photo, photo album, watermark
 Requires at least: 4.0.0
-Stable tag: 2.1.49
-Tested up to: 4.6.0
+Stable tag: 2.2.3
+Tested up to: 4.7.3
 License: GPLv2
 
-The most popular WordPress gallery plugin and one of the most popular plugins of all time with over 15 million downloads.
+The most popular WordPress gallery plugin and one of the most popular plugins of all time with over 17 million downloads.
 
 == Description ==
 
@@ -53,7 +53,7 @@ Learn more or connect with us:<br>
 *<a href="https://www.imagely.com/podcast/" target="_blank">The WordPress Photography Podcast</a><br>
 *<a href="https://www.imagely.com/docs/nextgen-gallery/" target="_blank">NextGEN Gallery Documentation</a><br>
 *<a href="https://twitter.com/imagely" target="_blank">Imagely on Twitter</a><br>
-*<a href="https://facebook.com/getimagely" target="_blank">Imagely on Facebook</a><br>
+*<a href="https://facebook.com/imagely" target="_blank">Imagely on Facebook</a><br>
 *<a href="https://instagram.com/imagely" target="_blank">Imagely on Instagram</a><br>
 
 == Credits ==
@@ -186,6 +186,106 @@ For more information, feel free to visit the official website for the NextGEN Ga
 
 
 == Changelog ==
+
+= V2.2.3 - 04.05.2017 =
+* Fixed:    E_WARNING on Gallery Settings page due to improper use of array_combine() on PHP <= 5.3
+
+= V2.2.2 -  04.04.2017 =
+* Fixed:    Hyperlinks in image descriptions
+* Fixed:    WordPress SEO sitemap image count
+* Fixed:    Removed id parameter in shortcodes
+* Fixed:    Fatal error in Freemius code
+
+= V2.2.1 - 03.13.2017 =
+* NEW:      Template mechanism for all display types
+* NEW:      Review notices
+* Changed:  Updated branding to Imagely
+* Changed:  Added the ability to click on a gallery title and have it open direct to Pro Lightbox
+* Fixed:    Problems with activation after initial installation
+* Fixed:    Don't display legacy shortcodes after creating new galleries
+* Fixed:    false positive malware detection notices against 'eval'
+* Fixed:    Various PHP notices and warnings
+* Fixed:    Issue with dynamic container height for Imagebrowser display types
+
+= V2.1.79 - 02.23.2017 =
+* Secured: Resolved vulnerability with tag cloud displays
+
+= V2.1.77 - 01.31.2017 =
+* Changed:  Corrected Facebook link
+* Changed:  Tags in readme.txt
+* Fixed:    Problem with deactivating other plugin
+
+= V2.1.69 - 01.18.2017 =
+* Fixed:    Ensured compatibility with WordPress 4.7.1
+* Fixed:    Missing option names on setting pages when Wizard active
+* Fixed:    Ensure that NextGEN Gallery is always loaded after it's extension plugins in WP 4.7
+* Fixed:    Pope product uninstaller not running during activation
+
+= V2.1.62 - 12.15.2016 =
+* Fixed:   Typo in notice for launching the gallery wizard
+* Fixed:   The ability to dismiss the gallery wizard notice
+
+= V2.1.61 - 12.14.2016 =
+* NEW:     Gallery creation wizard for new users
+* Fixed:   Shortcodes in widgets not getting substituted in Divi
+* Fixed:   Ensure that NGG placeholder text doesn't get styled incorrectly by other themes
+* Fixed:   Various thickbox issues on custom post type pages
+* Fixed:   Hide IGW placeholder images in Yoast feed
+
+= V2.1.60 - 11.22.2016 =
+* Secured: Ensure that only .css files can be edited using Styles tab
+
+= V2.1.59 - 11.22.2016 =
+* Secured: Ability to customize CSS Styles
+* Changed: readme.txt improvements
+* Fixed:   Compatibility with WordPress 4.7.0
+* Fixed:   IGW-inserted tagclouds are incorrect
+
+= V2.1.57 - 11.14.2016 =
+* Secured: Custom Styles may only be written to specific directories
+* Secured: SQL injection vulnerability for gallery names
+* Changed: Display type icons are now clickable in the Insert Gallery Window
+* Changed: Include backup image files when coping/moving a gallery
+* Changed: Show gallery name in upload notification
+* Changed: Added placeholder text to gallery name field on Add Gallery / Upload Images page
+* Fixed:   Custom sortorder not preserved in shortcode
+* Fixed:   Shortcodes added via Insert Gallery Window displayed as []
+* Fixed:   Uncaught TypeError: Cannot read property 'replace' of undefined
+* Fixed:   Use of deprecated Yoast SEO (aka WPSEO) filter
+* Fixed:   Conflict with Easy Digital Downloads
+* Fixed:   Misc invalid HTML tags in admin pages (thanks to kniebremser)
+* Fixed:   Change display:hidden to visibility:hidden in various places
+* Fixed:   Escaping of quotes in gallery titles and urls
+* Fixed:   Untranslatable strings
+
+
+= V2.1.56 - 10.27.2016 =
+* Fixed:   Shortcode parsing was affecting third-party shortcodes
+
+= V2.1.54 - 10.25.2016 =
+* NEW:     Added php docblock directives for code hinting/completion
+* NEW:     Display types can have aliases
+* NEW:     Visual Shortcodes
+* Changed: Now uses gulp for package compilation & JS/CSS minification
+* Changed: Updated Freemius SDK to 1.2.1
+* Fixed:   Extraneous backslashes being added to gallery titles & descriptions
+* Fixed:   Import folder 'gallery title' field wasn't being used for new gallery titles
+* Fixed:   Settings reset will now redirect to /wp-admin/ to avoid potential activation-related errors
+* Fixed:   Table columns cache becomes out of date between versions
+* Fixed:   Various issues with shortcodes when used in widgets
+* Fixed:   Warnings caused by calls to non-existent module package files
+* Fixed:   nextgen_admin's jquery-ui breaking Elegant Themes admin pages
+
+= V2.1.50 - 08.30.2016 =
+* NEW:     Added the ability to open galleries within albums using a lightbox
+* Changed: Increased freemius opt-in to 100%
+* Changed: Tamara Lackey's biography on the overview page
+* Fixed:   Images not responsive for all display types
+* Fixed:   Compatibility with the Imagely Lightroom plugin
+* Fixed:   Removed Pope tests folder
+* Fixed:   Maximum function nesting level fatal error when displaying two or more albums
+* Fixed:   Ensure Insert Gallery Window background stays white
+* Fixed:   PHP warning for C_NGG_Lightbox class using incompatible constructor
 
 = V2.1.49 - 07.26.2016 =
 * NEW:     Add a "Default" template option to override ATP settings when a global setting is used

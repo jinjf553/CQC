@@ -548,7 +548,7 @@ function hot_posts_list($days=7, $nums=10) {
     global $wpdb;
     $today = date("Y-m-d H:i:s");
     $daysago = date( "Y-m-d H:i:s", strtotime($today) - ($days * 24 * 60 * 60) );  
-    $result = $wpdb->get_results("SELECT comment_count, ID, post_title, post_date FROM $wpdb->posts WHERE post_date BETWEEN '$daysago' AND '$today' ORDER BY comment_count DESC LIMIT 0 , $nums");
+    $result = $wpdb->get_results("SELECT meta_value, comment_count, ID, post_title, post_date FROM $wpdb->posts, $wpdb->postmeta WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id and meta_key = 'bigfa_ding'  ORDER BY CAST(meta_value as UNSIGNED) DESC LIMIT 0 , $nums");
     $output = '';
     if(empty($result)) {
         $output = '<li>None data.</li>';
@@ -559,13 +559,13 @@ function hot_posts_list($days=7, $nums=10) {
             $title = $topten->post_title;
             $commentcount = $topten->comment_count;
             if ($commentcount != 0) {
-              $output .= '<li><p><span class="post-comments">评论 ('.$commentcount.')</span><span class="muted"><a href="javascript:;" data-action="ding" data-id="'.$postid.'" id="Addlike" class="action';
-	if(isset($_COOKIE['bigfa_ding_'.$postid])) $output .=' actived';
-	$output .='"><i class="fa fa-heart-o"></i><span class="count">';
-	if( get_post_meta($postid,'bigfa_ding',true) ){ 
-		$output .=get_post_meta($postid,'bigfa_ding',true);
- 	} else {$output .='0';}
-	$output .='</span>喜欢</a></span></p><span class="label label-'.$i.'">'.$i.'</span><a href="'.get_permalink($postid).'" title="'.$title.'">'.$title.'</a></li>';
+              $output .= '<li><p><span class="muted"><a href="javascript:;" data-action="ding" data-id="'.$postid.'" id="Addlike" class="action';
+        if(isset($_COOKIE['bigfa_ding_'.$postid])) $output .=' actived';
+        $output .='"><i class="fa fa-heart-o"></i><span class="count">';
+        if( get_post_meta($postid,'bigfa_ding',true) ){ 
+                $output .=get_post_meta($postid,'bigfa_ding',true);
+        } else {$output .='0';}
+        $output .='</span> 喜欢</a></span></p><span class="label label-'.$i.'">'.$i.'</span><a href="'.get_permalink($postid).'" title="'.$title.'">'.$title.'</a></li>';
                 $i++;
             }
         }

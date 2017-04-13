@@ -1,25 +1,26 @@
 <?php
 
-/***
- {
-	Module: photocrati-wordpress_routing,
-	Depends: { photocrati-router }
- }
- ***/
 class M_WordPress_Routing extends C_Base_Module
 {
 	static $_use_canonical_redirect = TRUE;
     static $_use_old_slugs          = TRUE;
 
-    function define()
+    function define($id = 'pope-module',
+                    $name = 'Pope Module',
+                    $description = '',
+                    $version = '',
+                    $uri = '',
+                    $author = '',
+                    $author_uri = '',
+                    $context = FALSE)
 	{
 		parent::define(
 			'photocrati-wordpress_routing',
 			'WordPress Routing',
 			"Integrates the MVC module's routing implementation with WordPress",
-			'0.6',
+			'0.8',
 			'https://www.imagely.com/wordpress-gallery-plugin/nextgen-gallery/',
-			'Photocrati Media',
+			'Imagely',
 			'https://www.imagely.com'
 		);
 	}
