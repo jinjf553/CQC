@@ -151,3 +151,4 @@ overflow:hidden;
 .yusi-bloger {
    font-weight: inherit;
 }
+.content #qrcodes .row { overflow: hidden;}
