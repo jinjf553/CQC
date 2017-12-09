@@ -22,7 +22,7 @@ $login = $changyanPlugin->getLogin();
 
 <div id="divMain" class="margin">
 	<iframe id="rightBar_1" name="rightBar_1"
-        src=<?php echo "http://s.changyan.kuaizhan.com/audit/comments/TOAUDIT/1"; ?>
+        src=<?php echo "https://s.changyan.kuaizhan.com/audit/comments/TOAUDIT/1"; ?>
         width="100%" height="100%" style="border:none"></iframe>
 </div>
 
