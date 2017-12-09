@@ -3,6 +3,8 @@ wp-content/uploads
 wp-content/uploads
 wp-config.php
 robots.txt
+/eggs/
+/dbs/
 x.php
 jd_root.txt
 bdunion.txt
