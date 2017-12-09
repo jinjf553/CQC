@@ -35,7 +35,7 @@ var _hmt = _hmt || [];
 })();
 </script>
 <meta name="360-site-verification" content="bdc579accc68a98f1258ebcce2266afa" />
-<script type="text/javascript" name="baidu-tc-cerfication" data-appid="5411405" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>
+<script type="text/javascript" name="baidu-tc-cerfication" data-appid="5411405" src="//apps.bdimg.com/cloudaapi/lightapp.js"></script>
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo home_url() ?>/fav.png" />
 <script type="text/javascript" src="<?php echo get_bloginfo("template_url")?>/js/main.js"></script>
 <script type="text/javascript">
