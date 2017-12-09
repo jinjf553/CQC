@@ -62,7 +62,7 @@ class Changyan_Handler extends Changyan_Abstract
     public function showCommentsNotice()
     {
         echo '<div class="notice">'
-            . '请访问<a color = red href="http://changyan.kuaizhan.com/audit/comments/TOAUDIT/1" target="blank"><font color="red">畅言站长管理后台</font></a>进行评论管理，当前页面的管理操作不能被同步到畅言管理服务器。</p>'
+            . '请访问<a color = red href="https://changyan.kuaizhan.com/audit/comments/TOAUDIT/1" target="blank"><font color="red">畅言站长管理后台</font></a>进行评论管理，当前页面的管理操作不能被同步到畅言管理服务器。</p>'
             . '</div>';
     }
 
@@ -142,7 +142,7 @@ class Changyan_Handler extends Changyan_Abstract
         if($isQuick == false) {
             $script =<<< EOT
 <div id="SOHUCS" sid=""></div>
-<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
     appid: '$appId',
@@ -160,9 +160,9 @@ EOT;
     var conf = '$conf'; 
     var width = window.innerWidth || document.documentElement.clientWidth; 
     if (width < 960) { 
-        window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+        window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
     } else { 
-        var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); 
+        var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); 
     }})(); 
 </script>            
 EOT;
@@ -194,7 +194,7 @@ EOT;
             'app_id' => $appid
         );
         $client = new ChangYan_Client();
-        $url = 'http://changyan.kuaizhan.com/getConf';
+        $url = 'https://changyan.kuaizhan.com/getConf';
         $conf = $client->httpRequest($url, 'GET', $params);
         if ($conf != '站点不存在') {
             if( $isQuick == true)
@@ -202,7 +202,7 @@ EOT;
             else
                 $this->setCode($appid, $conf);
         }
-        //$redirect = "http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['REQUEST_URI']) . "/admin.php?page=changyan";
+        //$redirect = "https://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['REQUEST_URI']) . "/admin.php?page=changyan";
         $redirect = admin_url('admin.php?page=changyan');
         header("Location: ".$redirect);
         die();
@@ -221,7 +221,7 @@ EOT;
             'url' => $url
         );
         $client = new ChangYan_Client();
-        $url = 'http://changyan.kuaizhan.com/extension/add-isv';
+        $url = 'https://changyan.kuaizhan.com/extension/add-isv';
         $rs = $client->httpRequest($url, 'POST', $params);
         header( "Content-Type: application/json" );
         if ( $rs['code'] == 0) {
@@ -255,16 +255,16 @@ EOT;
             'password' => $password
         );
         $client = new ChangYan_Client();
-        $url = 'http://changyan.kuaizhan.com/extension/login';
-        $rs = $client->httpRequest($url, 'GET', $params);
+        $url = 'https://changyan.kuaizhan.com/extension/login';
+        $rs = $client->httpRequest($url, 'POST', $params);
         header( "Content-Type: application/json" );
-        if ( $rs['code'] == 0) {
+        if ( isset($rs['code']) && $rs['code'] == 0) {
             // save username & password:
             $this->setOption('changyan_username', $username);
             $this->setOption('changyan_password', $password);
             $response = json_encode(array('success'=>'true','isvs'=>$rs['data']['isvs']));
         } else {
-            $response = json_encode(array('success'=>'false', 'msg'=>$rs['msg']));
+            $response = json_encode(array('success'=>'false', 'msg'=> 'errno='.$rs['errno'].',url='.$rs['url'] ));
         }
         die($response);
     }
@@ -315,7 +315,7 @@ EOT;
             'app_id' => $appid
         );
         $client = new ChangYan_Client();
-        $url = 'http://changyan.kuaizhan.com/getConf';
+        $url = 'https://changyan.kuaizhan.com/getConf';
         $conf = $client->httpRequest($url, 'GET', $params);
         if ($conf == '站点不存在') {
             $response = json_encode(array('success'=>'false', 'msg'=>$conf));
@@ -379,7 +379,7 @@ EOT;
     // 实验室: 热门评论JS
     public function setRepingCode($appId)
     {
-        $part1 = "<div id=\"cyReping\" role=\"cylabs\" data-use=\"reping\"></div><script type=\"text/javascript\" charset=\"utf-8\" src=\"http://changyan.itc.cn/js/??lib/jquery.js,changyan.labs.js?appid=";
+        $part1 = "<div id=\"cyReping\" role=\"cylabs\" data-use=\"reping\"></div><script type=\"text/javascript\" charset=\"utf-8\" src=\"https://changyan.itc.cn/js/??lib/jquery.js,changyan.labs.js?appid=";
         $part2 = "\"></script>";
         $repingScript = $part1 . $appId . $part2;
         $this->setOption('changyan_reping_script', $repingScript);
@@ -390,7 +390,7 @@ EOT;
     public function setHotnewsCode($appId)
     {
         $part1 = "<div id=\"cyHotnews\" role=\"cylabs\" data-use=\"hotnews\"></div>
-            <script type=\"text/javascript\" charset=\"utf-8\" src=\"http://changyan.itc.cn/js/??lib/jquery.js,changyan.labs.js?appid=";
+            <script type=\"text/javascript\" charset=\"utf-8\" src=\"https://changyan.itc.cn/js/??lib/jquery.js,changyan.labs.js?appid=";
         $part2 = "\"></script>";
         $repingScript = $part1 . $appId . $part2;
         $this->setOption('changyan_hotnews_script', $repingScript);
@@ -448,7 +448,7 @@ EOT;
             'app_id' => $appId
         );
         $client = new ChangYan_Client();
-        $url = 'http://changyan.sohu.com/getIsvId';
+        $url = 'https://changyan.sohu.com/getIsvId';
         $isvId = $client->httpRequest($url, 'GET', $params);
         header("Content-Type: application/json");
         if ($isvId == 'isv not exists!') {

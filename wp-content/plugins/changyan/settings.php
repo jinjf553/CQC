@@ -9,7 +9,7 @@ $appID = $changyanPlugin->getOption('changyan_appId');
 $login = $changyanPlugin->getLogin();
 
 ?>
-<iframe src="<?php echo "http://s.changyan.kuaizhan.com/extension/login?". $login ;?>" width="0" height="0"></iframe>
+<iframe src="<?php echo "https://s.changyan.kuaizhan.com/extension/login?". $login ;?>" width="0" height="0"></iframe>
 
 <div class="margin heiti" style="width: 800px">
     <br /><br />

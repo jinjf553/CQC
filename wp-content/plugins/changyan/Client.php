@@ -15,7 +15,7 @@ class ChangYan_Client {
     /*
      * return : plaintext or array
      * */
-    public function httpRequest($url,$method,$param) {
+    public function httpRequest($url, $method='GET', $param=array()) {
         $post = null;
         switch ($method) {
         case 'GET':
@@ -25,7 +25,7 @@ class ChangYan_Client {
             $post = $param;
             break;
         }
-        $response = $this->send($url,0,$post,null,$post,10);
+        $response = $this->send($url, 0, $post, null, null, null, 10);
         $json = json_decode($response,true);
         return $json==null?$response:$json;
     }
@@ -40,41 +40,51 @@ class ChangYan_Client {
      *  send get request: request($url.'?'.http_build_query($get_array))
      *  send post request: request($url, 0, $post_array)
      */
-    public function send($url, $limit=0, $post='', $cookie='', $timeout=10)
+    public function send($url, $limit=0, $post=array(), $head=array(), $cookie='', $timeout=10)
     {
         $return = '';
         $matches = parse_url($url);
         $scheme = $matches['scheme'];
         $host = $matches['host'];
         $path = $matches['path'] ? $matches['path'].(@$matches['query'] ? '?'.$matches['query'] : '') : '/';
-        $port = !empty($matches['port']) ? $matches['port'] : 80;
+        $is_https = preg_match("/^https:\/\/.*/", $url);
+        $port = !empty($matches['port']) ? $matches['port'] : ($is_https ? 443 : 80);
 
         if (function_exists('curl_init') && function_exists('curl_exec')) {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $scheme.'://'.$host.':'.$port.$path);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            $head['Host'] = $host;
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $head);
+            curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
             if ($post) {
-                curl_setopt($ch, CURLOPT_POST, 1);
                 $content = is_array($post) ? http_build_query($post) : $post;
+                curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, urldecode($content));
             }
             if ($cookie) {
                 curl_setopt($ch, CURLOPT_COOKIE, $cookie);
             }
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 900);
+            if($is_https) {
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,false);
+                //curl_setopt($ch, CURLOPT_SSLVERSION, 3);
+            }
+
             $data = curl_exec($ch);
-            $status = curl_getinfo($ch);
+            $info = curl_getinfo($ch);
             $errno = curl_errno($ch);
             curl_close($ch);
-            if ($errno || $status['http_code'] != 200) {
-                return;
+            if ($errno || $info['http_code'] != 200) {
+                $error = array('errno' => $errno,'url' => $url,'$info' => $info);
+                return $error;
             } else {
                 return !$limit ? $data : substr($data, 0, $limit);
             }
         }
 
+        // no cURL, use fsockopen/pfsockopen instead
+        $errno = 0;
+        $errstr = '';
         if ($post) {
             $content = is_array($post) ? urldecode(http_build_query($post)) : $post;
             $out = "POST $path HTTP/1.0\r\n";
@@ -100,21 +110,12 @@ class ChangYan_Client {
         }
 
         $fpflag = 0;
-        $fp = false;
-        if (function_exists('fsocketopen')) {
-            $fp = fsocketopen($host, $port, $errno, $errstr, $timeout);
-        }
-        if (!$fp) {
-            $context = stream_context_create(array(
-                'http' => array(
-                    'method' => $post ? 'POST' : 'GET',
-                    'header' => $header,
-                    'content' => $content,
-                    'timeout' => $timeout,
-                ),
-            ));
-            $fp = @fopen($scheme.'://'.$host.':'.$port.$path, 'b', false, $context);
-            $fpflag = 1;
+        if(function_exists('fsockopen')) {
+            $fp = @fsockopen($host, $port, $errno, $errstr, $timeout);
+        } elseif (function_exists('pfsockopen')) {
+            $fp = @pfsockopen($host, $port, $errno, $errstr, $timeout);
+        } else {
+            $fp = false;
         }
 
         if (!$fp) {
@@ -140,5 +141,4 @@ class ChangYan_Client {
             return $return;
         }
     }
-    
 }

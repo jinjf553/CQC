@@ -161,17 +161,19 @@ class Changyan_Synchronizer extends Changyan_Abstract
         $appKey = $this->getOption('changyan_appKey');
         $appId = trim($appId);
         $appKey = trim($appKey);
-        $topicsJson = ''; //json_encode($topics);
+        $topicsJson = '';
         foreach($topics as $topic) {
-            $topicsJson .= json_encode($topic) . "\n";
+            $topicsJson .= json_encode($topic, JSON_UNESCAPED_UNICODE) . "\n";
         }
 
-        $md5 = hash_hmac('sha1', $topicsJson, $appKey);
-        $url = 'http://changyan.sohu.com/admin/api/import/comment';
+        //$md5 = hash_hmac('sha1', $topicsJson, $appKey);
+        $md5 = hash_hmac('sha1', $topicsJson, $appKey, true);
+        $url = 'https://changyan.sohu.com/admin/api/import/comment';
         $postData = "appid=" . $appId . "&md5=" . $md5 . "&jsondata=" . $topicsJson;
         $this->outputTrace2Html(sprintf("request param: appId=%s md5=%s",$appId,$md5));
         $client = new ChangYan_Client();
         $response = $client->httpRequest($url, 'POST', $postData);
+        //$this->outputTrace2Html(sprintf("md5=%s,json=%s", print_r($md5,true),print_r($topicsJson,true)));
         $this->outputTrace2Html(sprintf("import topics to changyan: %s", print_r($response,true)));
         if(isset($response['success'])) {
             return $response['success'];
@@ -230,7 +232,7 @@ class Changyan_Synchronizer extends Changyan_Abstract
             'appId' => $appId,
             'date' => date('Y-m-d H:i:s', $time)
         );
-        $url = "http://changyan.sohu.com/admin/api/recent-comment-topics";
+        $url = "https://changyan.sohu.com/admin/api/recent-comment-topics";
         $this->outputTrace2Html(sprintf("request param: %s", print_r($params,true) ));
         $client = new ChangYan_Client();
         $response = $client->httpRequest($url, 'GET', $params);
@@ -270,7 +272,7 @@ class Changyan_Synchronizer extends Changyan_Abstract
             'page_size'=>100,
             'order_by'=>'time_desc'
         );
-        $url = 'http://changyan.sohu.com/api/2/topic/comments';
+        $url = 'https://changyan.sohu.com/api/2/topic/comments';
         $this->outputTrace2Html(sprintf("request param: %s", print_r($params,true) ));
         $client = new ChangYan_Client();
         $response = $client->httpRequest($url, 'GET', $params);

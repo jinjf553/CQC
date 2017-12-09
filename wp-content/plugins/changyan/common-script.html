@@ -230,7 +230,7 @@ function changyanRegister() {
             data,
             function(response) {
                 if (response.success == 'true') {
-                    window.open("http://www.kuaizhan.com/passport/?refer=http://changyan.kuaizhan.com/audit/comments/TOAUDIT/1");
+                    window.open("https://www.kuaizhan.com/passport/?refer=https://changyan.kuaizhan.com/audit/comments/TOAUDIT/1");
                 } else {
                     alert("提交异常，请检查您的网络设置");
                 }
@@ -295,7 +295,7 @@ function changyanLogout() {
                         var h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
                         s.type = 'text/javascript';
                         s.charset = 'utf-8';
-                        s.src = 'http://changyan.kuaizhan.com/logout';
+                        s.src = 'https://changyan.kuaizhan.com/logout';
                         h.insertBefore(s,h.firstChild);
                         setTimeout(function() {
                             window.location = window.location.pathname + '?page=changyan';
