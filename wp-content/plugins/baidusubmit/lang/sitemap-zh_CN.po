@@ -118,9 +118,9 @@ msgid ""
 "When using our products, please send any comments or suggestions to the "
 "Baidu Webmaster Feedback Center"
 msgstr ""
-"使用过程中，有任何意见或建议请提至<a href=\"http://zhanzhang.baidu.com/"
+"使用过程中，有任何意见或建议请提至<a href=\"https://zhanzhang.baidu.com/"
 "feedback/index\" target=\"_blank\">百度站长反馈中心</a><br />百度的索引量，以"
-"<a href=\"http://zhanzhang.baidu.com/indexs/index\" target=\"_blank\">百度官"
+"<a href=\"https://zhanzhang.baidu.com/indexs/index\" target=\"_blank\">百度官"
 "方索引量查询工具</a>为准，请验证站点后使用。"
 
 #: inc/setting.php:194

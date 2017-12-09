@@ -30,7 +30,7 @@ class BaidusubmitSitemap
     {
         $url = trim($url);
         $pos = 0;
-        if (0 == strncasecmp('http://', $url, 7)) {
+        if (0 == strncasecmp('https://', $url, 7)) {
             $pos = 7;
         }
         if (($end = strpos($url, '/', $pos)) > 0) {
@@ -231,7 +231,7 @@ class BaidusubmitSitemap
     {
         header('Content-Type: text/xml; charset=utf-8');
         echo '<?xml version="1.0" encoding="UTF-8"?>', "\n";
-        echo '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', "\n";
+        echo '<sitemapindex xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">', "\n";
     }
 
     static function printIndexFooter()

@@ -28,7 +28,7 @@ class Changyan_Abstract {
     }
 
     /*
-     * visit http://127.0.0.1/wordpress/debug.html
+     * visit https://127.0.0.1/wordpress/debug.html
      */
     protected function outputTrace2Html($msg,$new=false)
     {

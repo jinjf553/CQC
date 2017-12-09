@@ -120,7 +120,7 @@ class BaidusubmitSchemaPost
         $pics = '';
         if ($this->_pictures && is_array($this->_pictures)) {
             foreach ($this->_pictures as $x) {
-                if (strncasecmp('http://', $x, 7) !== 0) continue;
+                if (strncasecmp('https://', $x, 7) !== 0) continue;
                 $x = BaidusubmitSitemap::encodeUrl($x);
                 $pics .= "<articlePicture><![CDATA[$x]]></articlePicture>\n";
             }

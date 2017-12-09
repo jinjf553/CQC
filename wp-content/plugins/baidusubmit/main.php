@@ -8,7 +8,7 @@ load_plugin_textdomain('sitemap', false, '/baidusubmit/lang/');
  * 入口文件
  *
  * Plugin Name: Baidu Sitemaps
- * Plugin URI: http://zz.baidu.com/
+ * Plugin URI: https://zz.baidu.com/
  * Version: v1.0
  * Author: Baidu Inc.
  * Description: After installing Baidu Sitemaps, you can quickly and completely submit webpages and content to Baidu.

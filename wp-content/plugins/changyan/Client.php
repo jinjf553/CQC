@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * @link http://changyan.sohu.com/
+ * @link https://changyan.sohu.com/
  * @author ylx
  * 畅言HTTP请求类
  */
