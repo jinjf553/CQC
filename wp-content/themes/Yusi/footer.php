@@ -2,7 +2,7 @@
 <footer class="footer">
     <div class="footer-inner">
         <div class="copyright pull-left">
-         <a href="<?php echo get_option('home'); ?> " title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> 版权所有丨采用<a href="http://yusi123.com/"> 欲思 </a>主题丨基于<a href="http://cn.wordpress.org/" title="WordPress"> WordPress </a>构建   © 2015丨托管于 <a rel="nofollow" target="_blank" href="http://www.aliyun.com/">阿里云主机</a> & <a rel="nofollow" target="_blank" href="http://www.qiniu.com/">七牛云存储 </a>丨鲁ICP备14030596号
+         <a href="<?php echo get_option('home'); ?> " title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> 版权所有丨采用<a href="http://yusi123.com/"> 欲思 </a>主题丨基于<a href="http://cn.wordpress.org/" title="WordPress"> WordPress </a>构建   © 2018丨托管于 <a rel="nofollow" target="_blank" href="https://cloud.tencent.com/">腾讯云主机</a> & <a rel="nofollow" target="_blank" href="https://www.qiniu.com/">七牛云存储 </a>丨京ICP备18015597号-1
 		 <div>
 			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253486800'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1253486800%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
 		 </div>

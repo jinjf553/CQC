@@ -1,6 +1,22 @@
 <div class="">
     <div id="qrcodes">
         <div class="row">
+<div class="col-xs-12 col-md-4">
+                <div class="p-sm" style="overflow: hidden; padding-bottom: 15px;">
+                    <p class="text-center">我的个人微信公众号，联系我请直接在公众号留言即可~</p>
+                    <p class="text-center">扫码或搜索：进击的Coder</p>
+                    <div class="text-center">
+                        <img class="code-img"
+                             src="http://qiniu.cuiqingcai.com/wp-content/uploads/2017/05/qrcode_for_gh_5b0546ddd2d0_430.jpg"/>
+                    </div>
+                    <div class="text-center">
+                        <p style="color: #e9415a; font-size: 15px;">进击的Coder</p>
+                        <p>
+                            <span>微信公众号 </span><span style="color: #e9415a; font-size: 15px; margin-bottom: 45px;"> 扫一扫关注</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-12 col-md-4">
                 <div class="p-sm" style="overflow: hidden; padding-bottom: 15px;">
                     <p class="text-center">想结交更多的朋友吗?</p>
@@ -37,22 +53,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="p-sm" style="overflow: hidden; padding-bottom: 15px;">
-                    <p class="text-center">想找人聊天解闷？想要学习干货？</p>
-                    <p class="text-center">微信公众号进击的Coder为你打造</p>
-                    <div class="text-center">
-                        <img class="code-img"
-                             src="http://qiniu.cuiqingcai.com/wp-content/uploads/2017/05/qrcode_for_gh_5b0546ddd2d0_430.jpg"/>
-                    </div>
-                    <div class="text-center">
-                        <p style="color: #e9415a; font-size: 15px;">进击的Coder</p>
-                        <p>
-                            <span>微信公众号 </span><span style="color: #e9415a; font-size: 15px; margin-bottom: 45px;"> 扫一扫关注</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
     <style>

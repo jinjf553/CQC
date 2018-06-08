@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: 畅言评论系统
-Plugin URI: https://wordpress.org/plugins/changyan/
+Plugin URI: http://wordpress.org/plugins/changyan/
 Description: 即装即用，永久免费的社会化评论系统。为各类网站提供新浪微博、QQ、人人、搜狐等账号登录评论功能，同时提供强大的内容管理后台和智能云过滤服务。
-Version:  2.0.6
+Version:  2.0.5
 Author: 搜狐畅言
-Author URI: https://changyan.sohu.com
+Author URI: http://changyan.sohu.com
  */
 ini_set('max_execution_time', '0');
 define('CHANGYAN_PLUGIN_PATH', dirname(__FILE__));
@@ -60,8 +60,8 @@ function changyan_admin_init()
     global $wp_version, $changyanPlugin, $plugin_page;
 
     /*
-     *  See https://wordpress.stackexchange.com/questions/20327/plugin-action-links-filter-hook-deprecated
-     *  See also https://stackoverflow.com/questions/1580378/plugin-action-links-not-working-in-wordpress-2-8
+     *  See http://wordpress.stackexchange.com/questions/20327/plugin-action-links-filter-hook-deprecated
+     *  See also http://stackoverflow.com/questions/1580378/plugin-action-links-not-working-in-wordpress-2-8
      */
     add_filter('plugin_action_links_changyan/changyan.php', array($changyanPlugin, 'doPluginActionLinks', 10, 2));
     $script = $changyanPlugin->getOption('changyan_script');

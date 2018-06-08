@@ -33,11 +33,11 @@
 </div>
 	</article>	
 		<?php endwhile;  ?>
+		<?php include( 'exchange.php' ); ?>
 		<div style="background:#fff;padding-bottom:20px;font-size:14px;">
 			<p style="text-align: center;margin-bottom:20px;padding:0px 20px">您的支持是博主写作最大的动力，如果您喜欢我的文章，感觉我的文章对您有帮助，请狠狠点击下面的</p>
 			<p style="text-align: center;"><a href="http://cuiqingcai.com/donate"> <input style="width: 310px; margin: 10px auto 0px; background-color: #f58a87; color: #ffffff; height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" type="button" value="我要小额赞助" /></a>
 		</div>
-		<?php include( 'exchange.php' ); ?>
 		<footer class="article-footer">
 			<?php the_tags('<div class="article-tags"><i class="fa fa-tags"></i>','','</div>'); ?>
 		</footer>
